@@ -3,7 +3,9 @@ public class App {
 
 
         Calculadora calculadoraDeIdades = new Calculadora();
+        Comparador compararNumeros = new Comparador();
 
+    /*
         int somaDasIdades = calculadoraDeIdades.soma(31, 41);
         System.out.println(somaDasIdades);
 
@@ -15,6 +17,10 @@ public class App {
 
         int divideIdades = calculadoraDeIdades.divide(40, 30);
         System.out.println(divideIdades);
+    */
+
+        boolean compara = compararNumeros.menorQue(3, 5);
+        System.out.println(compara);
 
 
     }
