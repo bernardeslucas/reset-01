@@ -2,13 +2,13 @@ package Tema01.TiposAtaque;
 
 public class Magias {
 
-    String nome;
-    int poder, manaCusto;
+    public String nome;
+    public int ataquePoder, custoMana;
 
 
-    public Magias(String nome, int poder, int manaCusto) {
+    public Magias(String nome, int ataquePoder, int manaCusto) {
         this.nome = nome;
-        this.poder = poder;
-        this.manaCusto = manaCusto;
+        this.ataquePoder = ataquePoder;
+        this.custoMana = manaCusto;
     }
 }

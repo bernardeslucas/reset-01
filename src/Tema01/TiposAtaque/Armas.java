@@ -5,9 +5,9 @@ public class Armas {
     public int ataquePoder;
 
 
-    public Armas (String nome, int ataquePoder){
-        this.nome= nome;
-        this.ataquePoder=ataquePoder;
+    public Armas(String nome, int ataquePoder) {
+        this.nome = nome;
+        this.ataquePoder = ataquePoder;
     }
 
 
