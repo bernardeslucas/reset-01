@@ -40,8 +40,6 @@ public class Combate {
         mago1.ataque(guerreiro1, magiaAgua);
 
 
-
-
         //Resultado final stats personagens
         System.out.println("");
         System.out.println("Resultado Final");
@@ -52,7 +50,6 @@ public class Combate {
         System.out.println("Feiticeiro | Nome: " + feiticeiro1.nome + " | Vida: " + feiticeiro1.vida + " | Mana: " + feiticeiro1.mana);
         System.out.println("Feiticeiro | Nome: " + feiticeiro2.nome + " | Vida: " + feiticeiro2.vida + " | Mana: " + feiticeiro2.mana);
         System.out.println("Mago | Nome: " + mago1.nome + " | Vida: " + mago1.vida + " | Mana: " + mago1.mana);
-
 
     }
 }

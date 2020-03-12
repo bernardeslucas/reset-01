@@ -18,7 +18,7 @@ public class Barbaro {
         poderFinal = (arma.ataquePoder * this.ataque);
         dano = poderFinal - barbaro.defesa;
         if (this.vida <= 0) {
-            System.out.println(this.nome + " atacou " + barbaro.nome + " com " + arma.nome + " causando 0 de dano.");
+            System.out.println(this.nome + " atacou " + barbaro.nome + " com " + arma.nome + " causando 0 de dano. (Atacante está morto)");
         } else {
             barbaro.vida -= dano;
             if (barbaro.vida <= 0) {
@@ -35,7 +35,7 @@ public class Barbaro {
         dano = poderFinal - clerigo.defesa;
 
         if (this.vida <= 0) {
-            System.out.println(this.nome + " atacou " + clerigo.nome + " com " + arma.nome + " causando 0 de dano.");
+            System.out.println(this.nome + " atacou " + clerigo.nome + " com " + arma.nome + " causando 0 de dano. (Atacante está morto)");
         } else {
             clerigo.vida -= dano;
             if (clerigo.vida <= 0) {
@@ -52,7 +52,7 @@ public class Barbaro {
         dano = poderFinal - druida.defesa;
 
         if (this.vida <= 0) {
-            System.out.println(this.nome + " atacou " + druida.nome + " com " + arma.nome + " causando 0 de dano.");
+            System.out.println(this.nome + " atacou " + druida.nome + " com " + arma.nome + " causando 0 de dano. (Atacante está morto)");
         } else {
             druida.vida -= dano;
             if (druida.vida <= 0) {
@@ -68,7 +68,7 @@ public class Barbaro {
         poderFinal = (arma.ataquePoder * this.ataque);
         dano = poderFinal - feiticeiro.defesa;
         if (this.vida <= 0) {
-            System.out.println(this.nome + " atacou " + feiticeiro.nome + " com " + arma.nome + " causando 0 de dano.");
+            System.out.println(this.nome + " atacou " + feiticeiro.nome + " com " + arma.nome + " causando 0 de dano. (Atacante está morto)");
         } else {
             feiticeiro.vida -= dano;
             if (feiticeiro.vida <= 0) {
@@ -84,7 +84,7 @@ public class Barbaro {
         poderFinal = (arma.ataquePoder * this.ataque);
         dano = poderFinal - guerreiro.defesa;
         if (this.vida <= 0) {
-            System.out.println(this.nome + " atacou " + guerreiro.nome + " com " + arma.nome + " causando 0 de dano.");
+            System.out.println(this.nome + " atacou " + guerreiro.nome + " com " + arma.nome + " causando 0 de dano. (Atacante está morto)");
         } else {
             guerreiro.vida -= dano;
             if (guerreiro.vida <= 0) {
@@ -101,7 +101,7 @@ public class Barbaro {
         poderFinal = (arma.ataquePoder * this.ataque);
         dano = poderFinal - mago.defesa;
         if (this.vida <= 0) {
-            System.out.println(this.nome + " atacou " + mago.nome + " com " + arma.nome + " causando 0 de dano.");
+            System.out.println(this.nome + " atacou " + mago.nome + " com " + arma.nome + " causando 0 de dano. (Atacante está morto)");
         } else {
             mago.vida -= dano;
             if (mago.vida <= 0) {

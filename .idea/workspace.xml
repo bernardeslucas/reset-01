@@ -10,9 +10,6 @@
       <change beforePath="$PROJECT_DIR$/src/Tema01/Classes/Guerreiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tema01/Classes/Guerreiro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tema01/Classes/Mago.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tema01/Classes/Mago.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tema01/Combate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tema01/Combate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tema01/TiposAtaque/Armas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tema01/TiposAtaque/Armas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tema01/TiposAtaque/Magias.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tema01/TiposAtaque/Magias.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tema01/TiposAtaque/PoderDivino.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tema01/TiposAtaque/PoderDivino.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,34 +119,34 @@
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="576" y="65" key="CommitChangelistDialog2/-1618.-16.1618.1050/62.0.1858.1080@62.0.1858.1080" timestamp="1583792205470" />
-    <state width="1803" height="404" key="GridCell.Tab.0.bottom" timestamp="1583957958251">
+    <state width="1803" height="326" key="GridCell.Tab.0.bottom" timestamp="1584051146259">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="1803" height="404" key="GridCell.Tab.0.bottom/-1618.-16.1618.1050/62.0.1858.1080@62.0.1858.1080" timestamp="1583957958251" />
+    <state width="1803" height="326" key="GridCell.Tab.0.bottom/-1618.-16.1618.1050/62.0.1858.1080@62.0.1858.1080" timestamp="1584051146259" />
     <state width="933" height="270" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583612305774" />
-    <state width="1803" height="404" key="GridCell.Tab.0.center" timestamp="1583957958250">
+    <state width="1803" height="326" key="GridCell.Tab.0.center" timestamp="1584051146259">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="1803" height="404" key="GridCell.Tab.0.center/-1618.-16.1618.1050/62.0.1858.1080@62.0.1858.1080" timestamp="1583957958250" />
+    <state width="1803" height="326" key="GridCell.Tab.0.center/-1618.-16.1618.1050/62.0.1858.1080@62.0.1858.1080" timestamp="1584051146259" />
     <state width="933" height="270" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583612305773" />
-    <state width="1803" height="404" key="GridCell.Tab.0.left" timestamp="1583957958250">
+    <state width="1803" height="326" key="GridCell.Tab.0.left" timestamp="1584051146259">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="1803" height="404" key="GridCell.Tab.0.left/-1618.-16.1618.1050/62.0.1858.1080@62.0.1858.1080" timestamp="1583957958250" />
+    <state width="1803" height="326" key="GridCell.Tab.0.left/-1618.-16.1618.1050/62.0.1858.1080@62.0.1858.1080" timestamp="1584051146259" />
     <state width="933" height="270" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583612305773" />
-    <state width="1803" height="404" key="GridCell.Tab.0.right" timestamp="1583957958250">
+    <state width="1803" height="326" key="GridCell.Tab.0.right" timestamp="1584051146259">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state width="1803" height="404" key="GridCell.Tab.0.right/-1618.-16.1618.1050/62.0.1858.1080@62.0.1858.1080" timestamp="1583957958250" />
+    <state width="1803" height="326" key="GridCell.Tab.0.right/-1618.-16.1618.1050/62.0.1858.1080@62.0.1858.1080" timestamp="1584051146259" />
     <state width="933" height="270" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583612305774" />
     <state x="208" y="21" key="SettingsEditor" timestamp="1583950055935">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="208" y="21" key="SettingsEditor/-1618.-16.1618.1050/62.0.1858.1080@62.0.1858.1080" timestamp="1583950055935" />
     <state x="461" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1583613390419" />
-    <state x="622" y="322" key="com.intellij.ide.util.TipDialog" timestamp="1583945162994">
+    <state x="622" y="322" key="com.intellij.ide.util.TipDialog" timestamp="1584049996935">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
-    <state x="622" y="322" key="com.intellij.ide.util.TipDialog/-1618.-16.1618.1050/62.0.1858.1080@62.0.1858.1080" timestamp="1583945162994" />
+    <state x="622" y="322" key="com.intellij.ide.util.TipDialog/-1618.-16.1618.1050/62.0.1858.1080@62.0.1858.1080" timestamp="1584049996935" />
   </component>
 </project>

@@ -19,8 +19,11 @@ public class Clerigo {
     public void ataque(Barbaro barbaro, PoderDivino poder) {
         poderFinal = (poder.ataquePoder * this.ataque);
         dano = poderFinal - barbaro.defesa;
-        if (this.vida <= 0 || poder.custoFe > this.fe) {
-            System.out.println(this.nome + " atacou " + barbaro.nome + " com " + poder.nome + " causando 0 de dano.");
+
+        if (this.vida <= 0) {
+            System.out.println(this.nome + " atacou " + barbaro.nome + " com " + poder.nome + " causando 0 de dano. (Atacante está morto)");
+        } else if (poder.custoFe > this.fe) {
+            System.out.println(this.nome + " atacou " + barbaro.nome + " com " + poder.nome + " causando 0 de dano. (Atacante está sem fé)");
         } else {
             this.fe -= poder.custoFe;
             barbaro.vida -= dano;
@@ -37,8 +40,10 @@ public class Clerigo {
         poderFinal = (poder.ataquePoder * this.ataque);
         dano = poderFinal - clerigo.defesa;
 
-        if (this.vida <= 0 || poder.custoFe > this.fe) {
-            System.out.println(this.nome + " atacou " + clerigo.nome + " com " + poder.nome + " causando 0 de dano.");
+        if (this.vida <= 0) {
+            System.out.println(this.nome + " atacou " + clerigo.nome + " com " + poder.nome + " causando 0 de dano. (Atacante está morto)");
+        } else if (poder.custoFe > this.fe) {
+            System.out.println(this.nome + " atacou " + clerigo.nome + " com " + poder.nome + " causando 0 de dano. (Atacante está sem fé)");
         } else {
             this.fe -= poder.custoFe;
             clerigo.vida -= dano;
@@ -55,8 +60,10 @@ public class Clerigo {
         poderFinal = (poder.ataquePoder * this.ataque);
         dano = poderFinal - druida.defesa;
 
-        if (this.vida <= 0 || poder.custoFe > this.fe) {
-            System.out.println(this.nome + " atacou " + druida.nome + " com " + poder.nome + " causando 0 de dano.");
+        if (this.vida <= 0) {
+            System.out.println(this.nome + " atacou " + druida.nome + " com " + poder.nome + " causando 0 de dano. (Atacante está morto)");
+        } else if (poder.custoFe > this.fe) {
+            System.out.println(this.nome + " atacou " + druida.nome + " com " + poder.nome + " causando 0 de dano. (Atacante está sem fé)");
         } else {
             this.fe -= poder.custoFe;
             druida.vida -= dano;
@@ -72,8 +79,10 @@ public class Clerigo {
     public void ataque(Feiticeiro feiticeiro, PoderDivino poder) {
         poderFinal = (poder.ataquePoder * this.ataque);
         dano = poderFinal - feiticeiro.defesa;
-        if (this.vida <= 0 || poder.custoFe > this.fe) {
-            System.out.println(this.nome + " atacou " + feiticeiro.nome + " com " + poder.nome + " causando 0 de dano.");
+        if (this.vida <= 0) {
+            System.out.println(this.nome + " atacou " + feiticeiro.nome + " com " + poder.nome + " causando 0 de dano. (Atacante está morto)");
+        } else if (poder.custoFe > this.fe) {
+            System.out.println(this.nome + " atacou " + feiticeiro.nome + " com " + poder.nome + " causando 0 de dano. (Atacante está sem fé)");
         } else {
             this.fe -= poder.custoFe;
             feiticeiro.vida -= dano;
@@ -89,8 +98,10 @@ public class Clerigo {
     public void ataque(Guerreiro guerreiro, PoderDivino poder) {
         poderFinal = (poder.ataquePoder * this.ataque);
         dano = poderFinal - guerreiro.defesa;
-        if (this.vida <= 0 || poder.custoFe > this.fe) {
-            System.out.println(this.nome + " atacou " + guerreiro.nome + " com " + poder.nome + " causando 0 de dano.");
+        if (this.vida <= 0) {
+            System.out.println(this.nome + " atacou " + guerreiro.nome + " com " + poder.nome + " causando 0 de dano. (Atacante está morto)");
+        } else if (poder.custoFe > this.fe) {
+            System.out.println(this.nome + " atacou " + guerreiro.nome + " com " + poder.nome + " causando 0 de dano. (Atacante está sem fé)");
         } else {
             this.fe -= poder.custoFe;
             guerreiro.vida -= dano;
@@ -107,8 +118,10 @@ public class Clerigo {
     public void ataque(Mago mago, PoderDivino poder) {
         poderFinal = (poder.ataquePoder * this.ataque);
         dano = poderFinal - mago.defesa;
-        if (this.vida <= 0 || poder.custoFe > this.fe) {
-            System.out.println(this.nome + " atacou " + mago.nome + " com " + poder.nome + " causando 0 de dano.");
+        if (this.vida <= 0) {
+            System.out.println(this.nome + " atacou " + mago.nome + " com " + poder.nome + " causando 0 de dano. (Atacante está morto)");
+        } else if (poder.custoFe > this.fe) {
+            System.out.println(this.nome + " atacou " + mago.nome + " com " + poder.nome + " causando 0 de dano. (Atacante está sem fé)");
         } else {
             this.fe -= poder.custoFe;
             mago.vida -= dano;

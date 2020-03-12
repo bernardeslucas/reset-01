@@ -17,8 +17,10 @@ public class Mago {
     public void ataque(Barbaro barbaro, Magias magia) {
         poderFinal = (magia.ataquePoder * this.ataque);
         dano = poderFinal - barbaro.defesa;
-        if (this.vida <= 0 || magia.custoMana > this.mana) {
-            System.out.println(this.nome + " atacou " + barbaro.nome + " com " + magia.nome + " causando 0 de dano.");
+        if (this.vida <= 0){
+            System.out.println(this.nome + " atacou " + barbaro.nome + " com " + magia.nome + " causando 0 de dano. (Atacante está morto)");
+        } else if (magia.custoMana > this.mana){
+            System.out.println(this.nome + " atacou " + barbaro.nome + " com " + magia.nome + " causando 0 de dano. (Atacante sem mana)");
         } else {
             this.mana -= magia.custoMana;
             barbaro.vida -= dano;
@@ -35,8 +37,10 @@ public class Mago {
         poderFinal = (magia.ataquePoder * this.ataque);
         dano = poderFinal - clerigo.defesa;
 
-        if (this.vida <= 0 || magia.custoMana > this.mana) {
-            System.out.println(this.nome + " atacou " + clerigo.nome + " com " + magia.nome + " causando 0 de dano.");
+        if (this.vida <= 0){
+            System.out.println(this.nome + " atacou " + clerigo.nome + " com " + magia.nome + " causando 0 de dano. (Atacante está morto)");
+        } else if (magia.custoMana > this.mana){
+            System.out.println(this.nome + " atacou " + clerigo.nome + " com " + magia.nome + " causando 0 de dano. (Atacante sem mana)");
         } else {
             this.mana -= magia.custoMana;
             clerigo.vida -= dano;
@@ -53,8 +57,10 @@ public class Mago {
         poderFinal = (magia.ataquePoder * this.ataque);
         dano = poderFinal - druida.defesa;
 
-        if (this.vida <= 0 || magia.custoMana > this.mana) {
-            System.out.println(this.nome + " atacou " + druida.nome + " com " + magia.nome + " causando 0 de dano.");
+        if (this.vida <= 0){
+            System.out.println(this.nome + " atacou " + druida.nome + " com " + magia.nome + " causando 0 de dano. (Atacante está morto)");
+        } else if (magia.custoMana > this.mana){
+            System.out.println(this.nome + " atacou " + druida.nome + " com " + magia.nome + " causando 0 de dano. (Atacante sem mana)");
         } else {
             this.mana -= magia.custoMana;
             druida.vida -= dano;
@@ -70,8 +76,10 @@ public class Mago {
     public void ataque(Feiticeiro feiticeiro, Magias magia) {
         poderFinal = (magia.ataquePoder * this.ataque);
         dano = poderFinal - feiticeiro.defesa;
-        if (this.vida <= 0 || magia.custoMana > this.mana) {
-            System.out.println(this.nome + " atacou " + feiticeiro.nome + " com " + magia.nome + " causando 0 de dano.");
+        if (this.vida <= 0){
+            System.out.println(this.nome + " atacou " + feiticeiro.nome + " com " + magia.nome + " causando 0 de dano. (Atacante está morto)");
+        } else if (magia.custoMana > this.mana){
+            System.out.println(this.nome + " atacou " + feiticeiro.nome + " com " + magia.nome + " causando 0 de dano. (Atacante sem mana)");
         } else {
             this.mana -= magia.custoMana;
             feiticeiro.vida -= dano;
@@ -87,8 +95,10 @@ public class Mago {
     public void ataque(Guerreiro guerreiro, Magias magia) {
         poderFinal = (magia.ataquePoder * this.ataque);
         dano = poderFinal - guerreiro.defesa;
-        if (this.vida <= 0 || magia.custoMana > this.mana) {
-            System.out.println(this.nome + " atacou " + guerreiro.nome + " com " + magia.nome + " causando 0 de dano.");
+        if (this.vida <= 0){
+            System.out.println(this.nome + " atacou " + guerreiro.nome + " com " + magia.nome + " causando 0 de dano. (Atacante está morto)");
+        } else if (magia.custoMana > this.mana){
+            System.out.println(this.nome + " atacou " + guerreiro.nome + " com " + magia.nome + " causando 0 de dano. (Atacante sem mana)");
         } else {
             this.mana -= magia.custoMana;
             guerreiro.vida -= dano;
@@ -105,9 +115,11 @@ public class Mago {
     public void ataque(Mago mago, Magias magia) {
         poderFinal = (magia.ataquePoder * this.ataque);
         dano = poderFinal - mago.defesa;
-        if (this.vida <= 0 || magia.custoMana > this.mana) {
-            System.out.println(this.nome + " atacou " + mago.nome + " com " + magia.nome + " causando 0 de dano.");
-        } else {
+        if (this.vida <= 0){
+            System.out.println(this.nome + " atacou " + mago.nome + " com " + magia.nome + " causando 0 de dano. (Atacante está morto)");
+        } else if (magia.custoMana > this.mana){
+            System.out.println(this.nome + " atacou " + mago.nome + " com " + magia.nome + " causando 0 de dano. (Atacante sem mana)");
+        }  else {
             this.mana -= magia.custoMana;
             mago.vida -= dano;
             if (mago.vida <= 0) {
