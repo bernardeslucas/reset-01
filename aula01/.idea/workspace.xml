@@ -2,45 +2,75 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="626642c7-9b8b-4118-8a82-02232856313d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/AppTeclado.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01/Aviao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01/Bicicleta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01/Caminhao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01/Carro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01/Navio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01/Submarino.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01/Trem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01/Veiculo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01b/Aviao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01b/Bicicleta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01b/Caminhao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01b/Carro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01b/Navio.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01b/Submarino.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01b/Trem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01b/Veiculo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01b/VeiculoAereo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01b/VeiculoAquatico.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/aula02/exercicio01b/VeiculoTerrestre.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio2/exercicio2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/exercicio3-aula2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/out/production/exercicio3-aula2/exercicio3/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/out/production/exercicio3-aula2/exercicio3/.idea/exercicio3.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/out/production/exercicio3-aula2/exercicio3/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/out/production/exercicio3-aula2/exercicio3/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/out/production/exercicio3-aula2/exercicio3/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/src/exercicio3/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/src/exercicio3/.idea/exercicio3.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/src/exercicio3/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/src/exercicio3/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/src/exercicio3/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/src/testeInstanceOf/Animal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/src/testeInstanceOf/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/src/testeInstanceOf/Dog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/src/testeInstanceOf/Gato.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/exercicios-aula2/exercicio1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Arcano.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Arma.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Barbaro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Clerigo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Druida.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Feiticeiro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Guerreiro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Habilidade.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/HomemDeArmas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Magia.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Mago.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/MenuMetodos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Personagem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/PoderDivino.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Sacerdote.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/src/TiposDeClasses.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../aula02/tema-02/tema-02.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aula01/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Calculadora.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aula01/Calculadora.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Comparador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aula01/Comparador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exercicio3/Aluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aula01/Exercicio3/Aluno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exercicio3/GerenciarNotas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/aula01/Exercicio3/GerenciarNotas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tema01/Classes/Barbaro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tema01/Classes/Barbaro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tema01/Classes/Clerigo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tema01/Classes/Clerigo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tema01/Classes/Druida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tema01/Classes/Druida.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tema01/Classes/Feiticeiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tema01/Classes/Feiticeiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tema01/Classes/Guerreiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tema01/Classes/Guerreiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tema01/Classes/Mago.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tema01/Classes/Mago.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tema01/Combate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tema01/Combate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tema01/TiposAtaque/Armas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tema01/TiposAtaque/Armas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tema01/TiposAtaque/Magias.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tema01/TiposAtaque/Magias.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tema01/TiposAtaque/PoderDivino.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tema01/TiposAtaque/PoderDivino.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio2/exercicio2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio2/src/exercicio2/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio2/src/exercicio2/Categoria.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio2/src/exercicio2/Livro.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio2/src/exercicio2/Status.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio3-aula2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio3-aula2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio3-aula2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio3-aula2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio3-aula2/exercicio3-aula2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio3-aula2/src/exercicio3/Item.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio3-aula2/src/exercicio3/ListaCompras.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicio3-aula2/src/exercicio3/Segmento.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicios-aula2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicios-aula2/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicios-aula2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicios-aula2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicios-aula2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicios-aula2/exercicio1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicios-aula2/src/exercicio1/Aluno.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicios-aula2/src/exercicio1/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02tarde/exercicios-aula2/src/exercicio1/Turma.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,10 +85,10 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1Yo0B2xmif3Dft4OklOEs6uyTDt" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -69,6 +99,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -148,9 +179,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="684" y="149" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584195905657" />
-    <state x="777" y="406" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1584186682271">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-963" y="394" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1584489020956">
+      <screen x="-1618" y="-16" width="1618" height="1050" />
     </state>
+    <state x="-963" y="394" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/-1618.-16.1618.1050/62.0.1858.1080@-1618.-16.1618.1050" timestamp="1584489020956" />
     <state x="814" y="422" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/-1618.-16.1618.1050/62.0.1858.1080@62.0.1858.1080" timestamp="1583790777975" />
     <state x="777" y="406" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584186682271" />
     <state x="471" y="113" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor" timestamp="1583790775856">
