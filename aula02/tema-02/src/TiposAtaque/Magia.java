@@ -1,3 +1,5 @@
+package TiposAtaque;
+
 public class Magia extends Habilidade{
 
     private final int custoMana;

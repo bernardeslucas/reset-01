@@ -1,3 +1,5 @@
+package TiposAtaque;
+
 public class PoderDivino extends Habilidade {
 
     private final int custoFe;

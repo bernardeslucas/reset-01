@@ -1,3 +1,7 @@
+package ClassesPersonagem;
+
+import Combate.Registros;
+
 public abstract class Personagem {
 
     private final String nome;
@@ -33,6 +37,11 @@ public abstract class Personagem {
 
     public void setVida(int dano) {
         this.vida -= dano;
+        //pra não negativar a vida
+        if (this.vida < 0) {
+            this.vida = 0;
+        }
+
     }
 
     public int getAtaque() {
@@ -43,13 +52,10 @@ public abstract class Personagem {
         return defesa;
     }
 
-    void registrar(String nomeAlvo, String habilidade, int dano) {
+    void registrar(String nomeAlvo, String habilidade, int dano, String status) {
 
-        //   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        // LocalDateTime now = LocalDateTime.now();
-        //System.out.println(dtf.format(now)); //2016/11/16 12:08:43
-        System.out.println(this.nome + " atacou " + nomeAlvo + " com " + habilidade + " causando " + dano + " de dano");
+        Registros.listaRegistros.add(new Registros(nome, nomeAlvo, habilidade, dano, status));
+
+
     }
-
-
 }

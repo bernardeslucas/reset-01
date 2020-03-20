@@ -40,7 +40,14 @@ public class ListaCompras {
                     " (" + item.getQuantidade() + ") - " + item.getValor() + " | " + item.getValor() * item.getQuantidade());
         }
 
-
+        while (true) {
+            escolhaAtacante = teclado.nextInt();
+            isValid = listaAuxiliar.contains(escolhaAtacante);
+            if (isValid) {
+                break;
+            }
+            System.out.println("Número inválido, não há Homens de Arma disponíveis com esse número.");
+        }
     }
 
 

@@ -1,3 +1,5 @@
+package ClassesPersonagem;
+
 public enum TiposDeClasses {
     BARBARO(1,"Bárbaro"),
     CLERIGO(2,"Clérigo"),

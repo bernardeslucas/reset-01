@@ -1,3 +1,5 @@
+package TiposAtaque;
+
 public abstract class Habilidade {
 
 
