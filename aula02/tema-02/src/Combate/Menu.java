@@ -7,7 +7,7 @@ import TiposAtaque.PoderDivino;
 
 import java.util.*;
 
-public class MenuMetodos {
+public class Menu {
 
     static List<Personagem> listaCombatentes = new ArrayList<>();
     static List<Arma> listaArmas = new ArrayList<>();
@@ -18,7 +18,6 @@ public class MenuMetodos {
     static int escolhaAlvo;
     static int escolhaHabilidade;
     static int escolhaArma;
-
 
 
     public static int tratarInputInt() {
@@ -65,7 +64,7 @@ public class MenuMetodos {
 
         System.out.println("\n ==================== CRIAÇÃO DE PERSONAGENS ====================");
         for (int i = 0; i < qtdCombatentes; i++) {
-            System.out.println("Qual a classe do " + (i + 1) + "º personagem? (Digite o número correspondente)");
+            System.out.println("Qual a classe do " + (i + 1) + "º personagem? (Digite o número correspondente):");
             for (TiposDeClasses d : TiposDeClasses.values()) {
                 System.out.println((d.getId()) + " - " + d.getDescricao());
                 listaAuxiliar.add(d.getId());
@@ -109,7 +108,7 @@ public class MenuMetodos {
                     listaCombatentes.add(new Mago(TiposDeClasses.MAGO, nome, vida, ataque, defesa, mana));
                     break;
             }
-            System.out.println("--------------------------------------------------------------");
+            System.out.println("=======================================================================================================");
         }
     }
 
@@ -202,11 +201,14 @@ public class MenuMetodos {
                     listaAuxiliar.add(i + 1);
                 }
             }
-            escolhaAlvo = tratarInputIntPlusCheckList(listaAuxiliar, "ClassesPersonagem.Personagem") - 1;
+            escolhaAlvo = tratarInputIntPlusCheckList(listaAuxiliar, "Personagem") - 1;
         }
     }
 
     public static void mostraHabilidades(Personagem personagem) {
+
+        // listo somente as habilidades disponíveis usar de acordo com o personagem atacante
+
         List<Integer> listaAuxiliar = new ArrayList<>();
 
         if (personagem instanceof Arcano) {
@@ -215,13 +217,11 @@ public class MenuMetodos {
 
             for (int i = 0; i < listaMagias.size(); i++) {
                 if (listaMagias.get(i).getCustoMana() < combatente.getMana()) {
-                    System.out.println((i + 1) + " - " + listaMagias.get(i).getNome());
+                    System.out.println((i + 1) + " - " + listaMagias.get(i).getNome()+ " - Custo de mana: "+listaMagias.get(i).getCustoMana());
                     listaAuxiliar.add(i + 1);
                 }
             }
-
             escolhaHabilidade = tratarInputIntPlusCheckList(listaAuxiliar, "Magia") - 1;
-
 
         } else if (personagem instanceof Sacerdote) {
             Sacerdote combatente = (Sacerdote) personagem;
@@ -229,7 +229,7 @@ public class MenuMetodos {
 
             for (int i = 0; i < listaPoderesDivinos.size(); i++) {
                 if (listaPoderesDivinos.get(i).getCustoFe() < combatente.getFe()) {
-                    System.out.println((i + 1) + " - " + listaPoderesDivinos.get(i).getNome());
+                    System.out.println((i + 1) + " - " + listaPoderesDivinos.get(i).getNome()+ " - Custo de fé: "+listaPoderesDivinos.get(i).getCustoFe());
                     listaAuxiliar.add(i + 1);
                 }
             }
@@ -243,7 +243,7 @@ public class MenuMetodos {
         if (listaCombatentes.get(escolhaAtacante) instanceof HomemDeArmas) {
             HomemDeArmas combatente = (HomemDeArmas) listaCombatentes.get(escolhaAtacante);
             try {
-                combatente.atacar(listaCombatentes.get(MenuMetodos.escolhaAlvo), combatente.getArmaEquipada());
+                combatente.atacar(listaCombatentes.get(Menu.escolhaAlvo), combatente.getArmaEquipada());
             } catch (Exception e) {
                 System.out.println("O Homem de Arma atacante não está com alguma arma equipada.");
             }
@@ -253,7 +253,7 @@ public class MenuMetodos {
             if (listaPoderesDivinos.get(escolhaHabilidade).isArea()) {
                 combatente.atacarArea(listAtacados, listaPoderesDivinos.get(escolhaHabilidade));
             } else {
-                combatente.atacarIndividual(listaCombatentes.get(MenuMetodos.escolhaAlvo), MenuMetodos.listaPoderesDivinos.get(escolhaHabilidade));
+                combatente.atacarIndividual(listaCombatentes.get(Menu.escolhaAlvo), Menu.listaPoderesDivinos.get(escolhaHabilidade));
             }
 
         } else if (listaCombatentes.get(escolhaAtacante) instanceof Arcano) {
@@ -261,7 +261,7 @@ public class MenuMetodos {
             if (listaMagias.get(escolhaHabilidade).isArea()) {
                 combatente.atacarArea(listAtacados, listaMagias.get(escolhaHabilidade));
             } else {
-                combatente.atacarIndividual(listaCombatentes.get(MenuMetodos.escolhaAlvo), MenuMetodos.listaMagias.get(escolhaHabilidade));
+                combatente.atacarIndividual(listaCombatentes.get(Menu.escolhaAlvo), Menu.listaMagias.get(escolhaHabilidade));
             }
         }
 
@@ -271,9 +271,9 @@ public class MenuMetodos {
     public static boolean checkFimDaBatalha() {
         boolean check = false;
         List<Personagem> listaAuxiliar = new ArrayList<>();
-        for (int i = 0; i < listaCombatentes.size(); i++) {
-            if (listaCombatentes.get(i).getVida() > 0) {
-                listaAuxiliar.add(listaCombatentes.get(i));
+        for (Personagem listaCombatente : listaCombatentes) {
+            if (listaCombatente.getVida() > 0) {
+                listaAuxiliar.add(listaCombatente);
             }
         }
         if (listaAuxiliar.size() == 1) {

@@ -1,4 +1,5 @@
 package ClassesPersonagem;
+import Combate.Registros;
 import TiposAtaque.*;
 import java.util.List;
 
@@ -16,15 +17,11 @@ public abstract class Sacerdote extends Personagem {
     }
 
     public void setFe(int custoFe) {
-        this.fe -= fe;
+        this.fe -= custoFe;
         //pra não negativar a fe
         if (this.fe < 0) {
             this.fe = 0;
         }
-    }
-
-    void imprimirEstado() {
-        System.out.println("Nome: " + this.getNome() + " | Vida: " + this.getVida() + " | Fé: " + this.getFe());
     }
 
     public void atacarIndividual(Personagem alvo, PoderDivino poderDivino) {
@@ -38,6 +35,7 @@ public abstract class Sacerdote extends Personagem {
             status = ".";
         }
         registrar(alvo.getNome(), poderDivino.getNome(), dano, status);
+        Registros.numeroAtaques();
     }
 
     public void atacarArea(List<Personagem> listaAtacados, PoderDivino poderDivino) {
@@ -55,7 +53,10 @@ public abstract class Sacerdote extends Personagem {
             registrar(listaAtacados.get(i).getNome(), poderDivino.getNome(), dano, status);
         }
 
+        Registros.numeroAtaques();
         this.setFe(poderDivino.getCustoFe());
     }
+
+
 
 }

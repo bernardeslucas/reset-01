@@ -1,4 +1,5 @@
 package ClassesPersonagem;
+import Combate.Registros;
 import TiposAtaque.*;
 import java.util.List;
 
@@ -12,10 +13,6 @@ public abstract class Arcano extends Personagem {
         this.mana = mana;
     }
 
-    void imprimirEstado() {
-        System.out.println("Nome: " + this.getNome() + " | Vida: " + this.getVida() + " | Mana: " + this.getMana());
-    }
-
     public void atacarIndividual(Personagem alvo, Magia magia) {
         String status;
         int dano = calcularDano(alvo.getDefesa(), magia.getPoderAtaque());
@@ -27,6 +24,7 @@ public abstract class Arcano extends Personagem {
             status = ".";
         }
         registrar(alvo.getNome(), magia.getNome(), dano, status);
+        Registros.numeroAtaques();
     }
 
     public void atacarArea(List<Personagem> listaAtacados, Magia magia) {
@@ -42,6 +40,7 @@ public abstract class Arcano extends Personagem {
             }
             registrar(listaAtacados.get(i).getNome(), magia.getNome(), dano, status);
         }
+        Registros.numeroAtaques();
         this.setMana(magia.getCustoMana());
     }
 

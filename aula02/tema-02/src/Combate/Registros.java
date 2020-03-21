@@ -16,6 +16,11 @@ public class Registros {
     private final String habilidade;
     private final int dano;
     private final String status;
+    private static int contadorAtaques;
+
+    public static int getContadorAtaques() {
+        return contadorAtaques;
+    }
 
     public Registros(String nome, String nomeAlvo, String habilidade, int dano, String status) {
         this.timeStamp = LocalDateTime.now();
@@ -28,6 +33,7 @@ public class Registros {
 
     public static void imprimirRegistros() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss.SSS");
+        System.out.println("=======================================================================================================");
         for (Registros listaRegistro : listaRegistros) {
             System.out.println("[" + dtf.format(listaRegistro.getTimeStamp()) + "] " + listaRegistro.getNome() + " atacou "
                     + listaRegistro.getNomeAlvo() + " com " + listaRegistro.getHabilidade() + " causando "
@@ -48,12 +54,21 @@ public class Registros {
                     TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)),
                     millis - TimeUnit.SECONDS.toMillis(TimeUnit.MILLISECONDS.toSeconds(millis))
             );
-            System.out.println("===========================================\n"+result);
+            System.out.println("=======================================================================================================\n" +
+                    "[Duração do combate: "+result+"]");
         } catch (Exception e) {
-            System.out.println("===========================================\nNão houve combate nessa sessão.");
+            System.out.println("=======================================================================================================\n" +
+                    "Não houve combate nessa sessão.");
         }
 
     }
+
+    public static void numeroAtaques(){
+        contadorAtaques++;
+    }
+
+
+
 
     public LocalDateTime getTimeStamp() {
         return timeStamp;

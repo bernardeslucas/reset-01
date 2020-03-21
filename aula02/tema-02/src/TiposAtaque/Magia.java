@@ -18,4 +18,6 @@ public class Magia extends Habilidade{
     public boolean isArea() {
         return area;
     }
+
+
 }

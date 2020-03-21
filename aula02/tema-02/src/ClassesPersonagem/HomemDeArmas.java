@@ -1,4 +1,5 @@
 package ClassesPersonagem;
+import Combate.Registros;
 import TiposAtaque.*;
 public abstract class HomemDeArmas extends Personagem {
 
@@ -17,9 +18,7 @@ public abstract class HomemDeArmas extends Personagem {
         this.armaEquipada = armaEquipada;
     }
 
-    void imprimirEstado() {
-        System.out.println(this.getTipoClasse() + " - " + this.getNome() + " | Vida: " + this.getVida());
-    }
+
 
 
     public void atacar(Personagem alvo, Arma arma) {
@@ -32,6 +31,7 @@ public abstract class HomemDeArmas extends Personagem {
             status = ".";
         }
         registrar(alvo.getNome(), arma.getNome(), dano, status);
+        Registros.numeroAtaques();
     }
 
 

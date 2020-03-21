@@ -3,14 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="626642c7-9b8b-4118-8a82-02232856313d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aula02/exercicio3-aula2/src/TesteTryCatch/MyClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/exercicio3-aula2/src/TesteTryCatch/MyClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/Arcano.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Arcano.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/HomemDeArmas.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/HomemDeArmas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/MenuMetodos.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/MenuMetodos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/Personagem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Personagem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/Sacerdote.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Sacerdote.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/TiposDeClasses.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/TiposDeClasses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/ClassesPersonagem/Arcano.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/ClassesPersonagem/Arcano.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/ClassesPersonagem/HomemDeArmas.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/ClassesPersonagem/HomemDeArmas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/ClassesPersonagem/Sacerdote.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/ClassesPersonagem/Sacerdote.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/Combate/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Combate/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/Combate/MenuMetodos.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Combate/MenuMetodos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/Combate/Registros.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/Combate/Registros.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../aula02/tema-02/src/TiposAtaque/Arma.java" beforeDir="false" afterPath="$PROJECT_DIR$/../aula02/tema-02/src/TiposAtaque/Arma.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
