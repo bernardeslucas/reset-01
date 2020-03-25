@@ -21,7 +21,7 @@ public class App {
 
             switch(option){
                 case 1:
-                    musicMenu.opcoes();
+                    musicMenu.options();
                     break;
                 case 7:
                     System.out.println("Encerrando..");

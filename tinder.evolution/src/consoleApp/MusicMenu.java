@@ -16,45 +16,45 @@ public class MusicMenu {
         this.management = new MusicManagement();
     }
 
-    public void opcoes() {
-        Scanner teclado = new Scanner(System.in);
-        int opcao = 0;
+    public void options() {
+           Scanner teclado = new Scanner(System.in);
+    int option = 0;
 
-        while (opcao != 6) {
-            System.out.println("\nSelecione uma opção:");
-            System.out.println("[1] Criar");
-            System.out.println("[2] Editar");
-            System.out.println("[3] Listar");
-            System.out.println("[4] Procurar");
-            System.out.println("[5] Deletar");
-            System.out.println("[6] Voltar");
-            System.out.print("> ");
-            opcao = teclado.nextInt();
+        while (option != 6) {
+        System.out.println("\nSelecione uma opção:");
+        System.out.println("[1] Criar");
+        System.out.println("[2] Editar");
+        System.out.println("[3] Listar");
+        System.out.println("[4] Procurar");
+        System.out.println("[5] Deletar");
+        System.out.println("[6] Voltar");
+        System.out.print("> ");
+        option = teclado.nextInt();
 
-            switch (opcao) {
-                case 1:
-                    create();
-                    break;
-                case 2:
-                    edit();
-                    break;
-                case 3:
-                    list();
-                    break;
-                case 4:
-                    search();
-                    break;
-                case 5:
-                    delete();
-                    break;
-                case 6:
-                    System.out.println("...");
-                    break;
-                default:
-                    System.out.println("Opção inválida.");
-            }
+        switch (option) {
+            case 1:
+                create();
+                break;
+            case 2:
+                edit();
+                break;
+            case 3:
+                list();
+                break;
+            case 4:
+                search();
+                break;
+            case 5:
+                delete();
+                break;
+            case 6:
+                System.out.println("...");
+                break;
+            default:
+                System.out.println("Opção inválida.");
         }
     }
+}
 
     public Music create() {
 
