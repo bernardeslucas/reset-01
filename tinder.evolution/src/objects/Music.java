@@ -1,10 +1,7 @@
 package objects;
 
-import com.sun.istack.internal.NotNull;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
 
 public class Music {
@@ -13,14 +10,14 @@ public class Music {
     private String title;
     private String artist;
     private LocalDate releaseDate;
-    private MusicGenre musicGenre;
+    private MusicGenres musicGenre;
 
 
-    public Music(@NotNull String title, @NotNull String artist, @NotNull LocalDate releaseDate, @NotNull MusicGenre musicGenre) {
-        this.title = Objects.requireNonNull(title,"Título não pode ficar em branco.");
-        this.artist = Objects.requireNonNull(artist,"Artista não pode ficar em branco.");
-        this.releaseDate = Objects.requireNonNull(releaseDate,"Data de lançamento não pode ficar em branco.");
-        this.musicGenre = Objects.requireNonNull(musicGenre,"Estilo musical não pode ficar em branco.");
+    public Music(String title, String artist, LocalDate releaseDate, MusicGenres musicGenre) {
+        this.title = title;
+        this.artist = artist;
+        this.releaseDate = releaseDate;
+        this.musicGenre = musicGenre;
     }
 
     public int getId() {
@@ -55,20 +52,20 @@ public class Music {
         this.releaseDate = releaseDate;
     }
 
-    public MusicGenre getMusicGenre() {
+    public MusicGenres getMusicGenre() {
         return musicGenre;
     }
 
-    public void setMusicGenre(MusicGenre musicGenre) {
+    public void setMusicGenre(MusicGenres musicGenre) {
         this.musicGenre = musicGenre;
     }
 
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return "Música[" +
-                "id: " + id +
-                ", Título: '" + title +
+        return "Música [" +
+                "id: '" + id +
+                "', Título: '" + title +
                 "', Artista: '" + artist +
                 "', Estilo Musical: '" + musicGenre.getDescricao() +
                 "', Lançamento: '" + releaseDate.format(formatter) + "']";

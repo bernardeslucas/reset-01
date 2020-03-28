@@ -39,11 +39,13 @@ public class UserStorage {
         }
         return null;
     }
-    public boolean delete (int id){
+
+    public boolean delete(int id) {
         User userToDelete = search(id);
-        if(userToDelete!=null){
+        if (userToDelete != null) {
             return users.remove(userToDelete);
         }
+
         return false;
     }
 

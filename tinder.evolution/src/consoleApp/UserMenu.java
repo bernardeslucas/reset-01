@@ -5,18 +5,19 @@ import objects.User;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Scanner;
 
 public class UserMenu {
 
     private UserManagement management;
+    private CustomScanner scanner;
 
-    public UserMenu(UserManagement management) {
-        this.management = management;
+    protected UserMenu() {
+        this.management = new UserManagement();
+        this.scanner = new CustomScanner();
     }
 
-    public void options() {
-        Scanner teclado = new Scanner(System.in);
+    protected void options() {
+
         int option = 0;
 
         while (option != 6) {
@@ -27,8 +28,7 @@ public class UserMenu {
             System.out.println("[4] Procurar");
             System.out.println("[5] Deletar");
             System.out.println("[6] Voltar");
-            System.out.print("> ");
-            option = teclado.nextInt();
+            option = scanner.nextInt("> ");
 
             switch (option) {
                 case 1:
@@ -55,38 +55,79 @@ public class UserMenu {
         }
     }
 
-    public User create(){
-        Scanner teclado = new Scanner(System.in);
+    private User info(){
+        String name = scanner.nextLine("Nome: ");
+        String birthDate = scanner.nextLine("Data de nascimento (yyyy-MM-dd): \"");
+        String email = scanner.nextLine("E-mail: ");
+        String phone = scanner.nextLine("Telefone: ");
+        String bio = scanner.nextLine("Bio: ");
+        double latitude = scanner.nextDouble("Localização..\nLatitude: ");
+        double longitude = scanner.nextDouble("Longitude: ");
+
+        User user = new User(name, email, phone, LocalDate.parse(birthDate), bio, latitude, longitude);
+        return user;
+    }
+
+    private User create() {
+
         System.out.println("Cadastro de usuário..");
 
-        System.out.print("Nome: ");
-        String name = teclado.nextLine();
-        System.out.print("Data de nascimento (yyyy-MM-dd): ");
-        String birthDate = teclado.nextLine();
-        System.out.print("E-mail: ");
-        String email = teclado.nextLine();
-        System.out.print("Telefone:");
-        String phone = teclado.nextLine();
-        System.out.print("Bio:");
-        String bio = teclado.nextLine();
-        System.out.print("Localização..\nLatitude: ");
-        double latitude = teclado.nextDouble();
-        System.out.print("Longitude: ");
-        double longitude = teclado.nextDouble();
+        User userInfo = info();
+        User userCreated = management.create(userInfo);
 
-        User userCreated = management.create(new User(name, email, phone, LocalDate.parse(birthDate),bio,latitude,longitude));
         return userCreated;
+    }
 
-}
+    private User edit() {
+        System.out.println("Editar usuário..\nQual usuário deseja editar?");
+        List<User> listUsers = management.list();
+        for (User u : listUsers) {
+            System.out.println("[" + u.getId() + "] - " + u.getName());
+        }
+        int id = scanner.nextInt(">");
 
-public List<User> list(){
-    System.out.println("Lista de usuários..");
-    List<User> users = management.list();
-    for(User u :)
-}
+        User userInfo = info();
+        User userUpdated = management.edit(id, userInfo);
 
+        return userUpdated;
 
+    }
 
+    private List<User> list() {
+        System.out.println("Lista de usuários..");
+        List<User> users = management.list();
+        for (User u : users) {
+            System.out.println(u);
+        }
+        return users;
+    }
 
+    private void search() {
+        System.out.println("Pesquisa de Usuário..\nQual o id do usuário?");
+        int id = scanner.nextInt(">");
+
+        User user = management.search(id);
+
+        if (user == null) {
+            System.out.println("Usuário não encontrado.");
+        } else {
+            System.out.println(user);
+        }
+    }
+
+    private void delete() {
+        System.out.println("Exclusão de usuário..\nQual o id do usuário");
+        List<User> listUsers = management.list();
+        for (User u : listUsers) {
+            System.out.println("[" + u.getId() + "] - " + u.getName());
+        }
+        int id = scanner.nextInt(">");
+
+        if (management.delete(id)) {
+            System.out.println("Usuário deletado.");
+        } else {
+            System.out.println("Usuário não encontrado.");
+        }
+    }
 
 }

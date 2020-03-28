@@ -10,51 +10,80 @@ public class MusicManagement {
 
     private MusicStorage storage = new MusicStorage();
 
-    public Music create(Music music){
-
+    public boolean checkExistent(Music music) {
         List<Music> listaMusics = storage.list();
-
-        for (Music musicaExistente : listaMusics){
-            if(music.getTitle().equals(musicaExistente.getTitle())){
-                return musicaExistente;
+        for (Music musicaExistente : listaMusics) {
+            if (music.getTitle().equals(musicaExistente.getTitle())) {
+                System.out.println("\nMúsica já existente.");
+                return true;
             }
         }
+        return false;
+    }
 
-        if (music.getReleaseDate().isAfter(LocalDate.now())){
+    public boolean checkError(Music music) {
+        if (music.getTitle().isEmpty() || music.getArtist().isEmpty() || music.getReleaseDate() == null || music.getMusicGenre() == null) {
+            System.out.println("\nAlguma informação não preenchida.");
+            return true;
+        }
+
+
+        if (music.getReleaseDate().isAfter(LocalDate.now())) {
+            System.out.println("\nData de lançamento futura.");
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public Music create(Music music) {
+        if (checkExistent(music)) {
             return null;
         }
 
+        if (checkError(music)) {
+            return null;
+        }
 
         return storage.create(music);
-
-
-
     }
 
     public List<Music> list() {
         return storage.list();
     }
 
-    public Music edit(int id, Music musicUpdated){
+    public Music edit(int id, Music musicUpdated) {
         Music musicToEdit = search(id);
-        if (musicToEdit==null){
+        if (musicToEdit == null) {
+            System.out.println("Usuário não encontrado.");
             return null;
         }
-        return storage.edit(musicToEdit,musicUpdated);
+        if (!musicToEdit.getTitle().equals(musicUpdated.getTitle())) {
+            if (checkExistent(musicUpdated)) {
+                return null;
+            }
+        }
+        if (checkError(musicUpdated)) {
+            return null;
+        }
+        return storage.edit(musicToEdit, musicUpdated);
 
     }
 
-    public Music search(int id){
-        if(id>0){
+    public Music search(int id) {
+        if (id > 0) {
             return storage.search(id);
         }
+        System.out.println("id inválido");
         return null;
     }
 
-    public boolean delete(int id){
-        if(id>0){
+    public boolean delete(int id) {
+        if (id > 0) {
             return storage.delete(id);
         }
+        System.out.println("id inválido");
         return false;
     }
 

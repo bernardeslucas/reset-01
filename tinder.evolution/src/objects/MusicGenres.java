@@ -1,6 +1,6 @@
 package objects;
 
-public enum MusicGenre {
+public enum MusicGenres {
     FUNK("Funk"),
     INDIE("Indie"),
     METAL("Metal"),
@@ -11,7 +11,7 @@ public enum MusicGenre {
 
     private final String descricao;
 
-    MusicGenre(String descricao) {
+    MusicGenres(String descricao) {
         this.descricao = descricao;
     }
 

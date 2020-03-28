@@ -3,29 +3,16 @@ package objects;
 import java.time.LocalDate;
 
 public class User {
-    /*   O e-mail não pode repetir
-       O usuário deve ter mais de 18 anos de idade
-       Todos os campos são obrigatórios
-   Dados de um usuário:
-   Id
-   Nome
-   Email
-   Telefone
-   Data de Nascimento
-   Bio
-   Localização:
-   Latitude
-   Longitude
-     */
+
     private int id;
     private String name;
     private String email;
     private String phone;
     private LocalDate birthDate;
     private String bio;
-    private double latitude, longitude;
+    private Double latitude = null, longitude = null;
 
-    public User(String name, String email, String phone, LocalDate birthDate, String bio, double latitude, double longitude) {
+    public User(String name, String email, String phone, LocalDate birthDate, String bio, Double latitude, Double longitude) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -83,32 +70,32 @@ public class User {
         this.bio = bio;
     }
 
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
     @Override
     public String toString() {
-        return "Pessoa[ "+
-                "id: '"+id+
-                "Nome: '"+name+
-                "E-mail: '"+email+
-                "Telefone: '"+phone+
-                "Data de nascimento: '"+birthDate+
-                "Bio: '"+bio+
-                "Localização: '"+latitude+", "+longitude+"']";
+        return "Pessoa[" +
+                "id: '" + id +
+                "' Nome: '" + name +
+                "' E-mail: '" + email +
+                "' Telefone: '" + phone +
+                "' Data de nascimento: '" + birthDate +
+                "' Bio: '" + bio +
+                "' Localização: '" + latitude + ", " + longitude + "']";
 
 
     }

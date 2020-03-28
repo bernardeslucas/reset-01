@@ -2,7 +2,7 @@ package consoleApp;
 
 import management.MusicManagement;
 import objects.Music;
-import objects.MusicGenre;
+import objects.MusicGenres;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,113 +11,108 @@ import java.util.Scanner;
 public class MusicMenu {
 
     private MusicManagement management;
+    private CustomScanner scanner;
 
     public MusicMenu() {
         this.management = new MusicManagement();
+        this.scanner = new CustomScanner();
     }
 
     public void options() {
-           Scanner teclado = new Scanner(System.in);
-    int option = 0;
+
+        int option = 0;
 
         while (option != 6) {
-        System.out.println("\nSelecione uma opção:");
-        System.out.println("[1] Criar");
-        System.out.println("[2] Editar");
-        System.out.println("[3] Listar");
-        System.out.println("[4] Procurar");
-        System.out.println("[5] Deletar");
-        System.out.println("[6] Voltar");
-        System.out.print("> ");
-        option = teclado.nextInt();
+            System.out.println("\nSelecione uma opção:");
+            System.out.println("[1] Criar");
+            System.out.println("[2] Editar");
+            System.out.println("[3] Listar");
+            System.out.println("[4] Procurar");
+            System.out.println("[5] Deletar");
+            System.out.println("[6] Voltar");
 
-        switch (option) {
-            case 1:
-                create();
-                break;
-            case 2:
-                edit();
-                break;
-            case 3:
-                list();
-                break;
-            case 4:
-                search();
-                break;
-            case 5:
-                delete();
-                break;
-            case 6:
-                System.out.println("...");
-                break;
-            default:
-                System.out.println("Opção inválida.");
+            option = scanner.nextInt("> ");
+
+            switch (option) {
+                case 1:
+                    create();
+                    break;
+                case 2:
+                    edit();
+                    break;
+                case 3:
+                    list();
+                    break;
+                case 4:
+                    search();
+                    break;
+                case 5:
+                    delete();
+                    break;
+                case 6:
+                    System.out.println("...");
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
         }
     }
-}
+
+    public Music info() {
+        String title = scanner.nextLine("Título: ");
+        String artist = scanner.nextLine("Artista: ");
+        String releaseDate = scanner.nextLine("Data de lançamento (yyyy-MM-dd): ");
+
+        System.out.println("Estilo: ");
+        int cont = 1;
+        for (MusicGenres genres : MusicGenres.values()) {
+            System.out.println("[" + cont + "] " + genres.getDescricao());
+            cont++;
+        }
+        int genreOption = scanner.nextInt("> ");
+
+        MusicGenres musicGenre = null;
+
+        switch (genreOption) {
+            case 1:
+                musicGenre = MusicGenres.FUNK;
+                break;
+            case 2:
+                musicGenre = MusicGenres.INDIE;
+                break;
+            case 3:
+                musicGenre = MusicGenres.METAL;
+                break;
+            case 4:
+                musicGenre = MusicGenres.PAGODE;
+                break;
+            case 5:
+                musicGenre = MusicGenres.ROCK;
+                break;
+            case 6:
+                musicGenre = MusicGenres.SERTANEJO;
+                break;
+        }
+        Music music = new Music(title, artist, LocalDate.parse(releaseDate), musicGenre);
+        return music;
+    }
 
     public Music create() {
 
-        Scanner teclado = new Scanner(System.in);
+
         System.out.println("\nCadastro de música..");
 
-        System.out.print("Título: ");
-        String titulo = teclado.nextLine();
-        System.out.print("Artista: ");
-        String autor = teclado.nextLine();
-        System.out.print("Data de lançamento(yyyy-MM-dd): ");
-        String dataLancamento = teclado.nextLine();
+        Music music = info();
 
-        System.out.println("Estilo:");
-        System.out.println("[1] " + MusicGenre.FUNK.getDescricao());
-        System.out.println("[2] " + MusicGenre.INDIE.getDescricao());
-        System.out.println("[3] " + MusicGenre.METAL.getDescricao());
-        System.out.println("[4] " + MusicGenre.PAGODE.getDescricao());
-        System.out.println("[5] " + MusicGenre.ROCK.getDescricao());
-        System.out.println("[6] " + MusicGenre.SERTANEJO.getDescricao());
-        int estilo = teclado.nextInt();
+        Music musicCreated = management.create(music);
 
-        MusicGenre musicGenre = null;
 
-        switch (estilo) {
-            case 1:
-                musicGenre = MusicGenre.FUNK;
-                break;
-            case 2:
-                musicGenre = MusicGenre.INDIE;
-                break;
-            case 3:
-                musicGenre = MusicGenre.METAL;
-                break;
-            case 4:
-                musicGenre = MusicGenre.PAGODE;
-                break;
-            case 5:
-                musicGenre = MusicGenre.ROCK;
-                break;
-            case 6:
-                musicGenre = MusicGenre.SERTANEJO;
-                break;
-        }
-
-        Music musicCreated = management.create(new Music(titulo, autor, LocalDate.parse(dataLancamento), musicGenre));
 
         return musicCreated;
     }
 
-    private List<Music> list() {
-        System.out.println("Lista de músicas..");
-        List<Music> musicas = management.list();
-
-        for (Music m : musicas) {
-            System.out.println(m);
-        }
-
-        return musicas;
-    }
-
     public Music edit() {
-        Scanner teclado = new Scanner(System.in);
+
         System.out.println("\nEditar música..");
         System.out.println("Qual música deseja editar?");
 
@@ -125,65 +120,32 @@ public class MusicMenu {
         for (Music m : listaMusics) {
             System.out.println("[" + m.getId() + "] - " + m.getTitle());
         }
-        System.out.print(">");
-        int id = teclado.nextInt();
-        teclado.nextLine(); //consumir o \n do input acima
 
-        System.out.print("Título: ");
-        String title = teclado.nextLine();
-        System.out.print("Artista: ");
-        String artist = teclado.nextLine();
-        System.out.print("Data de lançamento (yyyy-MM-dd): ");
-        String releaseDate = teclado.next();
+        int id = scanner.nextInt("> ");
+        Music music = info();
 
-        System.out.println("Estilo:");
-        System.out.println("[1] " + MusicGenre.FUNK.getDescricao());
-        System.out.println("[2] " + MusicGenre.INDIE.getDescricao());
-        System.out.println("[3] " + MusicGenre.METAL.getDescricao());
-        System.out.println("[4] " + MusicGenre.PAGODE.getDescricao());
-        System.out.println("[5] " + MusicGenre.ROCK.getDescricao());
-        System.out.println("[6] " + MusicGenre.SERTANEJO.getDescricao());
-        int genreOption = teclado.nextInt();
+        Music musicUpdated = management.edit(id, music);
 
-        MusicGenre musicGenre = null;
-
-        switch (genreOption) {
-            case 1:
-                musicGenre = MusicGenre.FUNK;
-                break;
-            case 2:
-                musicGenre = MusicGenre.INDIE;
-                break;
-            case 3:
-                musicGenre = MusicGenre.METAL;
-                break;
-            case 4:
-                musicGenre = MusicGenre.PAGODE;
-                break;
-            case 5:
-                musicGenre = MusicGenre.ROCK;
-                break;
-            case 6:
-                musicGenre = MusicGenre.SERTANEJO;
-                break;
-        }
-
-        Music musicUpdated = management.edit(id, new Music(title, artist, LocalDate.parse(releaseDate), musicGenre));
-
-        if (musicUpdated == null) {
-            System.out.println("Música não encontrada.");
-        } else {
-            System.out.println(musicUpdated);
+        if (musicUpdated != null) {
+            System.out.println("\nMúsica editada com sucesso.\n" + musicUpdated);
         }
         return musicUpdated;
     }
 
+    private List<Music> list() {
+        System.out.println("Lista de músicas..");
+        List<Music> musics = management.list();
+
+        for (Music m : musics) {
+            System.out.println(m);
+        }
+
+        return musics;
+    }
+
     private void search() {
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("\nPesquisa de Música...");
-        System.out.println("Qual o id da música?");
-        System.out.print("> ");
-        int id = teclado.nextInt();
+
+        int id = scanner.nextInt("\nPesquisa de música..\nQual o id da música?\n> ");
 
         Music music = management.search(id);
 
@@ -195,7 +157,7 @@ public class MusicMenu {
     }
 
     private void delete() {
-        Scanner teclado = new Scanner(System.in);
+
         System.out.println("\nExclusão de Música...");
         System.out.println("Qual música deseja deletar (digite o id)?");
 
@@ -204,8 +166,8 @@ public class MusicMenu {
             System.out.println("[" + music.getId() + "] - " + music.getTitle());
         }
 
-        System.out.print("> ");
-        int id = teclado.nextInt();
+
+        int id = scanner.nextInt("> ");
 
         if (management.delete(id)) {
             System.out.println("Música deletada.");
