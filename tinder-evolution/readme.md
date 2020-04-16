@@ -1,0 +1,1 @@
+Coloquei um arquivo .json da collection do postman, porque usei o código em inglês, e também porque não estava com os JSON completos de cada coisa.
