@@ -1,4 +1,5 @@
-## Olá! Esse foi o repositório utilizado no Programa CWI RESET 2020/1.
+## Hello! This was the repositry used in CWI RESET 2020/1 Program.
 
-> https://github.com/cwi-reset/edicao-01
+> https://github.com/cwi-reset/edicao-01 
+
 > https://cwi.com.br/
