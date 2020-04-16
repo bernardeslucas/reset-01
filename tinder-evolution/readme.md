@@ -1,1 +1,2 @@
-Coloquei um arquivo .json da collection do postman, porque usei o código em inglês, e também porque não estava com os JSON completos de cada coisa.
+## This is the final project of CWI RESET 2020/1 Program.
+> There is a collection .json already configured to test in postman.
