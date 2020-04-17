@@ -38,7 +38,7 @@ public class MovieManagement {
         return false;
     }
 
-    public int checkId(Movie movie) {
+    public int checkId() {
         //to always get the lowest number(id) available
 
         for (int i = 0; i < storage.list().size(); i++) {
@@ -54,7 +54,7 @@ public class MovieManagement {
         if (checkExistent(movie) || checkError(movie)) {
             return null;
         }
-        movie.setId(checkId(movie));
+        movie.setId(checkId());
 
         return storage.create(movie);
     }

@@ -34,7 +34,7 @@ public class SportManagement {
 
     }
 
-    public int checkId(Sport sport) {
+    public int checkId() {
         //to always get the lowest number(id) available
 
         for (int i = 0; i < storage.list().size(); i++) {
@@ -50,7 +50,7 @@ public class SportManagement {
         if (checkExistent(sport) || checkError(sport)) {
             return null;
         }
-        sport.setId(checkId(sport));
+        sport.setId(checkId());
 
         return storage.create(sport);
     }

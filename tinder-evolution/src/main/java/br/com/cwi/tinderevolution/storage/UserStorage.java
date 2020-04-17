@@ -31,6 +31,7 @@ public class UserStorage {
         userToEdit.setBio(userUpdated.getBio());
         userToEdit.setLatitude(userUpdated.getLatitude());
         userToEdit.setLongitude(userUpdated.getLongitude());
+        userToEdit.setPhotoUrl(userUpdated.photoUrl());
 
         return userToEdit;
     }
@@ -52,5 +53,9 @@ public class UserStorage {
 
         return false;
     }
+
+
+
+
 
 }

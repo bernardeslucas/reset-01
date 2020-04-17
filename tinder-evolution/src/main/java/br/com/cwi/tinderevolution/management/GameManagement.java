@@ -40,7 +40,7 @@ public class GameManagement {
         return false;
     }
 
-    public int checkId(Game game) {
+    public int checkId() {
         //to always get the lowest number(id) available
 
         for (int i = 0; i < storage.list().size(); i++) {
@@ -56,7 +56,7 @@ public class GameManagement {
         if (checkExistente(game) || checkError(game)) {
             return null;
         }
-        game.setId(checkId(game));
+        game.setId(checkId());
 
         return storage.create(game);
     }

@@ -33,7 +33,7 @@ public class CuriosityManagement {
         return false;
     }
 
-    public int checkId(Curiosity curiosity) {
+    public int checkId() {
         //to always get the lowest number(id) available
 
         for (int i = 0; i < storage.list().size(); i++) {
@@ -50,7 +50,7 @@ public class CuriosityManagement {
             return null;
         }
 
-        curiosity.setId(checkId(curiosity));
+        curiosity.setId(checkId());
 
         return storage.create(curiosity);
     }

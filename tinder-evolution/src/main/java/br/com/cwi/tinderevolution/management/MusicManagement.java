@@ -40,7 +40,7 @@ public class MusicManagement {
 
     }
 
-    public int checkId(Music music) {
+    public int checkId() {
         //to always get the lowest number(id) available
 
         for (int i = 0; i < storage.list().size(); i++) {
@@ -56,7 +56,7 @@ public class MusicManagement {
             return null;
         }
 
-        music.setId(checkId(music));
+        music.setId(checkId());
 
         return storage.create(music);
     }

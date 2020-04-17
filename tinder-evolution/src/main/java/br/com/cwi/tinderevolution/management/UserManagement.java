@@ -43,7 +43,7 @@ public class UserManagement {
 
     }
 
-    public int checkId(User user) {
+    public int checkId() {
         //to always get the lowest number(id) available
 
         for (int i = 0; i < storage.list().size(); i++) {
@@ -58,7 +58,7 @@ public class UserManagement {
         if (checkExistent(user) || checkError(user)) {
             return null;
         }
-        user.setId(checkId(user));
+        user.setId(checkId());
         return storage.create(user);
     }
 
@@ -102,6 +102,8 @@ public class UserManagement {
         System.out.println("id inválido");
         return false;
     }
+
+
 
 
 }

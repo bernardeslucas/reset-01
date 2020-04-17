@@ -52,7 +52,7 @@ public class SeriesManagement {
 
     }
 
-    public int checkId(Series series) {
+    public int checkId() {
         //to always get the lowest number(id) available
 
         for (int i = 0; i < storage.list().size(); i++) {
@@ -68,7 +68,7 @@ public class SeriesManagement {
         if (checkExistent(series) || checkError(series)) {
             return null;
         }
-        series.setId(checkId(series));
+        series.setId(checkId());
 
         return storage.create(series);
     }
