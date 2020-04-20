@@ -1,6 +1,8 @@
 package br.com.cwi.tinderevolution.storage;
 
 import br.com.cwi.tinderevolution.domain.game.Game;
+import br.com.cwi.tinderevolution.domain.music.Music;
+import br.com.cwi.tinderevolution.domain.user.User;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -40,13 +42,13 @@ public class GameStorage {
         return null;
     }
 
-    public boolean delete(int id) {
-        Game gameToDelete = search(id);
-        if (gameToDelete != null) {
-            return games.remove(gameToDelete);
-        }
+    public boolean delete(Game gameToDelete) {
+        games.remove(gameToDelete);
+        return true;
+    }
 
-        return false;
+    public List<User> getUsers(Game game) {
+        return game.getUsers();
     }
 
 

@@ -1,6 +1,11 @@
 package br.com.cwi.tinderevolution.domain.series;
 
+import br.com.cwi.tinderevolution.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Series {
 
@@ -12,6 +17,7 @@ public class Series {
     private int episodesQty;
     private SeriesGenres seriesGenre;
     private String storyLine;
+    private List<User> users = new ArrayList<>();
 
     public Series(String name, String director, LocalDate releaseDate, int seasonQty, int episodesQty, SeriesGenres seriesGenre, String storyLine) {
         this.name = name;
@@ -85,6 +91,19 @@ public class Series {
 
     public void setStoryLine(String storyLine) {
         this.storyLine = storyLine;
+    }
+
+    @JsonIgnore
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void addUser(User user) {
+        users.add(user);
+    }
+
+    public void removeUser(User user) {
+        users.remove(user);
     }
 
     @Override

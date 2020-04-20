@@ -1,5 +1,11 @@
 package br.com.cwi.tinderevolution.storage;
 
+import br.com.cwi.tinderevolution.domain.curiosity.Curiosity;
+import br.com.cwi.tinderevolution.domain.game.Game;
+import br.com.cwi.tinderevolution.domain.movie.Movie;
+import br.com.cwi.tinderevolution.domain.music.Music;
+import br.com.cwi.tinderevolution.domain.series.Series;
+import br.com.cwi.tinderevolution.domain.sport.Sport;
 import br.com.cwi.tinderevolution.domain.user.User;
 import org.springframework.stereotype.Repository;
 
@@ -31,7 +37,7 @@ public class UserStorage {
         userToEdit.setBio(userUpdated.getBio());
         userToEdit.setLatitude(userUpdated.getLatitude());
         userToEdit.setLongitude(userUpdated.getLongitude());
-        userToEdit.setPhotoUrl(userUpdated.photoUrl());
+        userToEdit.setPhotoUrl(userUpdated.getPhotoUrl());
 
         return userToEdit;
     }
@@ -45,17 +51,36 @@ public class UserStorage {
         throw new RuntimeException("Usuário não encontrado");
     }
 
-    public boolean delete(int id) {
-        User userToDelete = search(id);
-        if (userToDelete != null) {
-            return users.remove(userToDelete);
-        }
+    public boolean delete(User userToDelete) {
 
-        return false;
+        users.remove(userToDelete);
+
+        return true;
+
     }
 
+    public List<Music> musicsLiked(User user) {
+        return user.getMusicsLiked();
+    }
 
+    public List<Movie> moviesLiked(User user) {
+        return user.getMoviesLiked();
+    }
 
+    public List<Series> seriesLiked(User user) {
+        return user.getSeriesLiked();
+    }
 
+    public List<Sport> sportsLiked(User user) {
+        return user.getSportsLiked();
+    }
+
+    public List<Game> gamesLiked(User user) {
+        return user.getGamesLiked();
+    }
+
+    public List<Curiosity> curiositiesSet(User user) {
+        return user.getCuriositiesSet();
+    }
 
 }

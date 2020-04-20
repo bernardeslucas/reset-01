@@ -40,6 +40,7 @@ public class LikesManagement {
             throw new RuntimeException("Usuário e/ou música não encontrados no sistema.");
         }
 
+        music.addUsers(user);
         likeStorage.likeMusic(user, music);
     }
 
@@ -52,6 +53,7 @@ public class LikesManagement {
         if (!user.getMusicsLiked().contains(music)) {
             throw new RuntimeException("Música não curtida pelo usuário.");
         }
+        music.deleteUsers(user);
         likeStorage.dislikeMusic(user, music);
 
     }
@@ -63,6 +65,8 @@ public class LikesManagement {
         if (user == null || movie == null) {
             throw new RuntimeException("Usuário e/ou filme não encontrados no sistema.");
         }
+
+        movie.addUser(user);
         likeStorage.likeMovie(user, movie);
     }
 
@@ -75,6 +79,7 @@ public class LikesManagement {
         if (!user.getMoviesLiked().contains(movie)) {
             throw new RuntimeException("Filme não curtido pelo usuário.");
         }
+        movie.removeUser(user);
         likeStorage.dislikeMovie(user, movie);
     }
 
@@ -85,6 +90,8 @@ public class LikesManagement {
         if (user == null || series == null) {
             throw new RuntimeException("Usuário e/ou série não encontrados no sistema.");
         }
+
+        series.addUser(user);
         likeStorage.likeSeries(user, series);
     }
 
@@ -97,6 +104,8 @@ public class LikesManagement {
         if (!user.getSeriesLiked().contains(series)) {
             throw new RuntimeException("Série não curtida pelo usuário.");
         }
+
+        series.removeUser(user);
         likeStorage.dislikeSeries(user, series);
     }
 
@@ -107,6 +116,8 @@ public class LikesManagement {
         if (user == null || game == null) {
             throw new RuntimeException("Usuário e/ou jogo não encontrados no sistema.");
         }
+
+        game.addUser(user);
         likeStorage.likeGame(user, game);
     }
 
@@ -119,6 +130,7 @@ public class LikesManagement {
         if (!user.getGamesLiked().contains(game)) {
             throw new RuntimeException("Jogo não curtido pelo usuário.");
         }
+        game.removeUser(user);
         likeStorage.dislikeGame(user, game);
     }
 
@@ -129,6 +141,7 @@ public class LikesManagement {
         if (user == null || sport == null) {
             throw new RuntimeException("Usuário e/ou esporte não encontrados no sistema.");
         }
+        sport.addUser(user);
         likeStorage.likeSport(user, sport);
     }
 
@@ -141,6 +154,7 @@ public class LikesManagement {
         if (!user.getSportsLiked().contains(sport)) {
             throw new RuntimeException("Esporte não curtido pelo usuário.");
         }
+        sport.removeUser(user);
         likeStorage.dislikeSport(user, sport);
     }
 
@@ -151,6 +165,7 @@ public class LikesManagement {
         if (user == null || curiosity == null) {
             throw new RuntimeException("Usuário e/ou curiosidade não encontrados no sistema.");
         }
+        curiosity.addUser(user);
         likeStorage.addCuriosity(user, curiosity);
     }
 
@@ -163,6 +178,7 @@ public class LikesManagement {
         if (!user.getCuriositiesSet().contains(curiosity)) {
             throw new RuntimeException("Curiosidade não cadastrada nesse usuário.");
         }
+        curiosity.removeUser(user);
         likeStorage.deleteCuriosity(user, curiosity);
     }
 

@@ -2,6 +2,7 @@ package br.com.cwi.tinderevolution.controller;
 
 
 import br.com.cwi.tinderevolution.domain.curiosity.Curiosity;
+import br.com.cwi.tinderevolution.domain.user.User;
 import br.com.cwi.tinderevolution.management.CuriosityManagement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,5 +40,13 @@ public class CuriosityController {
     private void delete(@PathVariable int id) {
         management.delete(id);
     }
+
+    //get users by curiosity id
+    @GetMapping("{id}/users")
+    public List<User> getUsers(@PathVariable("id") int id){
+        return management.getUsers(id);
+    }
+
+
 }
 

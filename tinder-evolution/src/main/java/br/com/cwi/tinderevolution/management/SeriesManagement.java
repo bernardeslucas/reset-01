@@ -1,6 +1,8 @@
 package br.com.cwi.tinderevolution.management;
 
+import br.com.cwi.tinderevolution.domain.music.Music;
 import br.com.cwi.tinderevolution.domain.series.Series;
+import br.com.cwi.tinderevolution.domain.user.User;
 import br.com.cwi.tinderevolution.storage.SeriesStorage;
 import org.springframework.stereotype.Service;
 
@@ -63,6 +65,15 @@ public class SeriesManagement {
         return storage.list().size() + 1;
     }
 
+    public Series checkSeries(int id){
+        Series series = search(id);
+        if (series == null) {
+            throw new RuntimeException("Série não encontrada.");
+        }
+        return series;
+
+    }
+
     public Series create(Series series) {
 
         if (checkExistent(series) || checkError(series)) {
@@ -78,12 +89,8 @@ public class SeriesManagement {
     }
 
     public Series edit(int id, Series seriesUpdated) {
-        Series seriesToEdit = search(id);
+        Series seriesToEdit = checkSeries(id);
 
-        if (seriesToEdit == null) {
-            System.out.println("Série não encontrada");
-            return null;
-        }
         if (!seriesToEdit.getName().equals(seriesUpdated.getName())) {
             if (checkExistent(seriesUpdated)) {
                 return null;
@@ -100,17 +107,18 @@ public class SeriesManagement {
         if (id > 0) {
             return storage.search(id);
         }
-        System.out.println("id inválido");
+        System.out.println("Id inválido.");
         return null;
     }
 
     public boolean delete(int id) {
-        if (id > 0) {
-            return storage.delete(id);
-        }
-        System.out.println("id inválido");
-        return false;
+        Series seriesToDelete = checkSeries(id);
+        return storage.delete(seriesToDelete);
     }
 
+    public List<User> getUsers(int id) {
+        Series series = checkSeries(id);
+        return storage.getUsers(series);
+    }
 
 }

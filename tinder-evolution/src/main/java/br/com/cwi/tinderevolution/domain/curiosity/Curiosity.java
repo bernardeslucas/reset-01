@@ -1,10 +1,17 @@
 package br.com.cwi.tinderevolution.domain.curiosity;
 
+import br.com.cwi.tinderevolution.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Curiosity {
 
     private int id;
     private String description;
     private CuriosityCategories category;
+    private List<User> users = new ArrayList<>();
 
     public Curiosity(String description, CuriosityCategories category) {
         this.description = description;
@@ -33,6 +40,19 @@ public class Curiosity {
 
     public void setCategory(CuriosityCategories category) {
         this.category = category;
+    }
+
+    @JsonIgnore
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void addUser(User user) {
+        users.add(user);
+    }
+
+    public void removeUser(User user) {
+        users.remove(user);
     }
 
     @Override

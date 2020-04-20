@@ -1,7 +1,7 @@
 package br.com.cwi.tinderevolution.management;
 
-
 import br.com.cwi.tinderevolution.domain.music.Music;
+import br.com.cwi.tinderevolution.domain.user.User;
 import br.com.cwi.tinderevolution.storage.MusicStorage;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,6 @@ public class MusicManagement {
             return true;
         }
 
-
         if (music.getReleaseDate().isAfter(LocalDate.now())) {
             System.out.println("\nData de lançamento futura.");
             return true;
@@ -51,6 +50,14 @@ public class MusicManagement {
         return storage.list().size() + 1;
     }
 
+    public Music checkMusic(int id) {
+        Music music = search(id);
+        if (music == null) {
+            throw new RuntimeException("Música não encontrada.");
+        }
+        return music;
+    }
+
     public Music create(Music music) {
         if (checkExistent(music) || checkError(music)) {
             return null;
@@ -67,13 +74,9 @@ public class MusicManagement {
 
     public Music edit(int id, Music musicUpdated) {
 
-        Music musicToEdit = search(id);
+        Music musicToEdit = checkMusic(id);
 
-        if (musicToEdit == null) {
-            System.out.println("Usuário não encontrado.");
-            return null;
-        }
-        //check existent rule only if the e-mail is different, because otherwise, you wouldn't get to edit other attributes and keep the same e-mail
+        //check existent rule only if the title is different, because otherwise, you wouldn't get to edit other attributes while keeping the same title
         if (!musicToEdit.getTitle().equals(musicUpdated.getTitle())) {
             if (checkExistent(musicUpdated)) {
                 return null;
@@ -91,17 +94,17 @@ public class MusicManagement {
         if (id > 0) {
             return storage.search(id);
         }
-        System.out.println("id inválido");
-        return null;
+        throw new RuntimeException("Id inválido.");
     }
 
     public boolean delete(int id) {
-        if (id > 0) {
-            return storage.delete(id);
-        }
-        System.out.println("id inválido");
-        return false;
+        Music musicToDelete = checkMusic(id);
+        return storage.delete(musicToDelete);
     }
 
+    public List<User> getUsers(int id) {
+        Music music = checkMusic(id);
+        return storage.getUsers(music);
+    }
 
 }

@@ -1,6 +1,8 @@
 package br.com.cwi.tinderevolution.storage;
 
+import br.com.cwi.tinderevolution.domain.music.Music;
 import br.com.cwi.tinderevolution.domain.series.Series;
+import br.com.cwi.tinderevolution.domain.user.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -45,12 +47,13 @@ public class SeriesStorage {
         return null;
     }
 
-    public boolean delete(int id) {
-        Series seriesToDelete = search(id);
-        if (seriesToDelete != null) {
-            return seriesList.remove(seriesToDelete);
-        }
-        return false;
+    public boolean delete(Series seriesToDelete) {
+        seriesList.remove(seriesToDelete);
+        return true;
+    }
+
+    public List<User> getUsers(Series series) {
+        return series.getUsers();
     }
 
 }

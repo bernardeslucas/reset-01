@@ -1,6 +1,8 @@
 package br.com.cwi.tinderevolution.management;
 
+import br.com.cwi.tinderevolution.domain.music.Music;
 import br.com.cwi.tinderevolution.domain.sport.Sport;
+import br.com.cwi.tinderevolution.domain.user.User;
 import br.com.cwi.tinderevolution.storage.SportStorage;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +47,14 @@ public class SportManagement {
         return storage.list().size() + 1;
     }
 
+    public Sport checkSport(int id){
+        Sport sport = search(id);
+        if (sport == null) {
+            throw new RuntimeException("Esporte não encontrado.");
+        }
+        return sport;
+    }
+
     public Sport create(Sport sport) {
 
         if (checkExistent(sport) || checkError(sport)) {
@@ -85,10 +95,12 @@ public class SportManagement {
     }
 
     public boolean delete(int id) {
-        if (id > 0) {
-            return storage.delete(id);
-        }
-        System.out.println("id inválido");
-        return false;
+        Sport sportToDelete = checkSport(id);
+        return storage.delete(sportToDelete);
+    }
+
+    public List<User> getUsers(int id) {
+       Sport sport = checkSport(id);
+        return storage.getUsers(sport);
     }
 }

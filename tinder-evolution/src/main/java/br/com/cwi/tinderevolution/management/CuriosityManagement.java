@@ -1,6 +1,7 @@
 package br.com.cwi.tinderevolution.management;
 
 import br.com.cwi.tinderevolution.domain.curiosity.Curiosity;
+import br.com.cwi.tinderevolution.domain.music.Music;
 import br.com.cwi.tinderevolution.domain.user.User;
 import br.com.cwi.tinderevolution.storage.CuriosityStorage;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,14 @@ public class CuriosityManagement {
         return storage.list().size() + 1;
     }
 
+    public Curiosity checkCuriosity(int id){
+        Curiosity curiosity = search(id);
+        if (curiosity == null) {
+            throw new RuntimeException("Música não encontrada.");
+        }
+        return curiosity;
+    }
+
     public Curiosity create(Curiosity curiosity) {
 
         if (checkExistent(curiosity) || checkError(curiosity)) {
@@ -60,11 +69,7 @@ public class CuriosityManagement {
     }
 
     public Curiosity edit(int id, Curiosity curiosityUpdated) {
-        Curiosity curiosityToEdit = search(id);
-        if (curiosityToEdit == null) {
-            System.out.println("Curiosidade não encontrada");
-            return null;
-        }
+        Curiosity curiosityToEdit = checkCuriosity(id);
 
         //check existent rule only if the e-mail is different, because otherwise, you wouldn't get to edit other attributes and keep the same e-mail
         if(!curiosityToEdit.getDescription().equals(curiosityUpdated.getDescription())) {
@@ -89,10 +94,12 @@ public class CuriosityManagement {
     }
 
     public boolean delete(int id) {
-        if (id > 0) {
-            return storage.delete(id);
-        }
-        System.out.println("id inválido");
-        return false;
+        Curiosity curiosityToDelete = checkCuriosity(id);
+        return storage.delete(curiosityToDelete);
+    }
+
+    public List<User> getUsers(int id) {
+        Curiosity curiosity = checkCuriosity(id);
+        return storage.getUsers(curiosity);
     }
 }

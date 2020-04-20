@@ -1,6 +1,11 @@
 package br.com.cwi.tinderevolution.domain.game;
 
+import br.com.cwi.tinderevolution.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
 
@@ -10,6 +15,7 @@ public class Game {
     private LocalDate releaseDate;
     private GameGenres gameGenre;
     private GamePlatforms gamePlatform;
+    private List<User> users = new ArrayList<>();
 
     public Game(String name, String publisher, LocalDate releaseDate, GameGenres gameGenre, GamePlatforms gamePlatform) {
         this.name = name;
@@ -65,6 +71,19 @@ public class Game {
 
     public void setGamePlatform(GamePlatforms gamePlatform) {
         this.gamePlatform = gamePlatform;
+    }
+
+    @JsonIgnore
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void addUser(User user) {
+        users.add(user);
+    }
+
+    public void removeUser(User user) {
+        users.remove(user);
     }
 
     @Override

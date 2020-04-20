@@ -1,6 +1,7 @@
 package br.com.cwi.tinderevolution.controller;
 
 import br.com.cwi.tinderevolution.domain.series.Series;
+import br.com.cwi.tinderevolution.domain.user.User;
 import br.com.cwi.tinderevolution.management.SeriesManagement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +38,12 @@ public class SeriesController {
     @DeleteMapping("{id}")
     private void delete(@PathVariable int id) {
         management.delete(id);
+    }
+
+    //get users by series id
+    @GetMapping("{id}/users")
+    public List<User> getUsers(@PathVariable("id") int id){
+        return management.getUsers(id);
     }
 }
 

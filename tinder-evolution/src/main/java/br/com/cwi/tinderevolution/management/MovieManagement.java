@@ -1,6 +1,7 @@
 package br.com.cwi.tinderevolution.management;
 
 import br.com.cwi.tinderevolution.domain.movie.Movie;
+import br.com.cwi.tinderevolution.domain.user.User;
 import br.com.cwi.tinderevolution.storage.MovieStorage;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +50,14 @@ public class MovieManagement {
         return storage.list().size() + 1;
     }
 
+    public Movie checkMovie(int id) {
+        Movie movie = search(id);
+        if (movie == null) {
+            throw new RuntimeException("Filme não encontrado.");
+        }
+        return movie;
+    }
+
     public Movie create(Movie movie) {
 
         if (checkExistent(movie) || checkError(movie)) {
@@ -64,11 +73,8 @@ public class MovieManagement {
     }
 
     public Movie edit(int id, Movie movieUpdated) {
-        Movie movieToEdit = search(id);
-        if (movieToEdit == null) {
-            System.out.println("\nUsuário não encontrado");
-            return null;
-        }
+        Movie movieToEdit = checkMovie(id);
+
         if (!movieToEdit.getTitle().equals(movieUpdated.getTitle())) {
             if (checkExistent(movieUpdated)) {
                 return null;
@@ -89,11 +95,14 @@ public class MovieManagement {
     }
 
     public boolean delete(int id) {
-        if (id > 0) {
-            return storage.delete(id);
-        }
-        System.out.println("id inválido");
-        return false;
+        Movie movieToDelete = checkMovie(id);
+
+        return storage.delete(movieToDelete);
+    }
+
+    public List<User> getUsers(int id) {
+        Movie movie = checkMovie(id);
+        return storage.getUsers(movie);
     }
 
 }

@@ -1,8 +1,12 @@
 package br.com.cwi.tinderevolution.domain.music;
 
+import br.com.cwi.tinderevolution.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Music {
 
@@ -11,9 +15,10 @@ public class Music {
     private String artist;
     private LocalDate releaseDate;
     private MusicGenres musicGenre;
+    private List<User> users = new ArrayList<>();
 
-
-    public Music(String title, String artist, LocalDate releaseDate, MusicGenres musicGenre) {
+    public Music(int id, String title, String artist, LocalDate releaseDate, MusicGenres musicGenre) {
+        this.id = id;
         this.title = title;
         this.artist = artist;
         this.releaseDate = releaseDate;
@@ -58,6 +63,19 @@ public class Music {
 
     public void setMusicGenre(MusicGenres musicGenre) {
         this.musicGenre = musicGenre;
+    }
+
+    @JsonIgnore
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void addUsers(User user) {
+        users.add(user);
+    }
+
+    public void deleteUsers(User user) {
+        users.remove(user);
     }
 
     @Override

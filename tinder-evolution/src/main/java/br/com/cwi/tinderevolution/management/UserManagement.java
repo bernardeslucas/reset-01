@@ -1,5 +1,11 @@
 package br.com.cwi.tinderevolution.management;
 
+import br.com.cwi.tinderevolution.domain.curiosity.Curiosity;
+import br.com.cwi.tinderevolution.domain.game.Game;
+import br.com.cwi.tinderevolution.domain.movie.Movie;
+import br.com.cwi.tinderevolution.domain.music.Music;
+import br.com.cwi.tinderevolution.domain.series.Series;
+import br.com.cwi.tinderevolution.domain.sport.Sport;
 import br.com.cwi.tinderevolution.domain.user.User;
 import br.com.cwi.tinderevolution.storage.UserStorage;
 import org.springframework.stereotype.Service;
@@ -54,6 +60,14 @@ public class UserManagement {
         return storage.list().size() + 1;
     }
 
+    public User checkUser (int id){
+        User user = search(id);
+        if(user == null){
+            throw new RuntimeException("Usuário não encontrado.");
+        }
+        return user;
+    }
+
     public User create(User user) {
         if (checkExistent(user) || checkError(user)) {
             return null;
@@ -68,13 +82,9 @@ public class UserManagement {
 
     public User edit(int id, User userUpdated) {
 
-        User userToEdit = search(id);
+        User userToEdit = checkUser(id);
 
-        if (userToEdit == null) {
-            throw new RuntimeException("Usuário não encontrado");
-        }
-
-        //check existent rule only if the e-mail is different, because otherwise, you wouldn't get to edit other attributes and keep the same e-mail
+        //check existent rule only if the e-mail is different, because otherwise, you wouldn't get to edit other attributes while keeping the same e-mail
         if (!userToEdit.getEmail().equals(userUpdated.getEmail())) {
             if (checkExistent(userUpdated)) {
                 return null;
@@ -96,11 +106,36 @@ public class UserManagement {
     }
 
     public boolean delete(int id) {
-        if (id > 0) {
-            return storage.delete(id);
-        }
-        System.out.println("id inválido");
-        return false;
+        User user = checkUser(id);
+        return storage.delete(user);
+    }
+
+    //get lists
+    public List<Music> musicsLiked(int id) {
+        User user = checkUser(id);
+        return storage.musicsLiked(user);
+    }
+    public List<Movie> moviesLiked(int id) {
+        User user = checkUser(id);
+        return storage.moviesLiked(user);
+    }
+    public List<Series> seriesLiked(int id) {
+        User user = checkUser(id);
+        return storage.seriesLiked(user);
+    }
+    public List<Game> gamesLiked(int id) {
+        User user = checkUser(id);
+        return storage.gamesLiked(user);
+    }
+
+    public List<Sport> sportsLiked(int id) {
+        User user = checkUser(id);
+        return storage.sportsLiked(user);
+    }
+
+    public List<Curiosity> curiositiesSet(int id) {
+        User user = checkUser(id);
+        return storage.curiositiesSet(user);
     }
 
 

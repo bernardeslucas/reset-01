@@ -1,16 +1,21 @@
 package br.com.cwi.tinderevolution.domain.movie;
 
+import br.com.cwi.tinderevolution.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Movie {
 
-private int id;
-private String title;
-private String director;
-private LocalDate releaseDate;
-private MovieGenres movieGenre;
-private String storyLine;
-
+    private int id;
+    private String title;
+    private String director;
+    private LocalDate releaseDate;
+    private MovieGenres movieGenre;
+    private String storyLine;
+    private List<User> users = new ArrayList<>();
 
     public Movie(String title, String director, LocalDate releaseDate, MovieGenres movieGenre, String storyLine) {
         this.title = title;
@@ -68,14 +73,29 @@ private String storyLine;
         this.storyLine = storyLine;
     }
 
+    @JsonIgnore
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void addUser(User user) {
+        users.add(user);
+    }
+
+    public void removeUser(User user) {
+        users.remove(user);
+    }
+
+
+
     @Override
     public String toString() {
-        return "Filme ["+
-                "id: '"+id+
-                "', Título: '"+title+
-                "', Diretor: '"+director+
-                "', Data de lançamento: '"+releaseDate+
-                "', Categoria: '"+movieGenre.getDescription()+
-                "', Sinopse: '"+storyLine+"']";
+        return "Filme [" +
+                "id: '" + id +
+                "', Título: '" + title +
+                "', Diretor: '" + director +
+                "', Data de lançamento: '" + releaseDate +
+                "', Categoria: '" + movieGenre.getDescription() +
+                "', Sinopse: '" + storyLine + "']";
     }
 }

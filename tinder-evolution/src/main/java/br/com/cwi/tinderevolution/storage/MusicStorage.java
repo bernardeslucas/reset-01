@@ -1,8 +1,7 @@
 package br.com.cwi.tinderevolution.storage;
 
-
-
 import br.com.cwi.tinderevolution.domain.music.Music;
+import br.com.cwi.tinderevolution.domain.user.User;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -11,7 +10,6 @@ import java.util.List;
 public class MusicStorage {
 
     private static final List<Music> musics = new ArrayList<>();
-    private static int contadorId = 1;
 
     public Music create(Music music) {
 
@@ -43,14 +41,13 @@ public class MusicStorage {
         return null;
     }
 
-    public boolean delete(int id) {
-
-        Music musicaParaDeletar = search(id);
-        if (musicaParaDeletar != null) {
-            return musics.remove(musicaParaDeletar);
-        }
-        return false;
+    public boolean delete(Music musicToDelete) {
+        musics.remove(musicToDelete);
+        return true;
     }
 
+    public List<User> getUsers(Music music) {
+        return music.getUsers();
+    }
 
 }

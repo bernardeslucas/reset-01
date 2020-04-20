@@ -111,7 +111,7 @@ public class User {
     }
 
     //to do: return photo preview
-    public String photoUrl() {
+    public String getPhotoUrl() {
         return photoUrl;
     }
 
@@ -257,7 +257,7 @@ public class User {
                 ", bio='" + bio + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", photoUrl='" + photoUrl + '\'' +
+                ", getPhotoUrl='" + photoUrl + '\'' +
                 '}';
     }
 }

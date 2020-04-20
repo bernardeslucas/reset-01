@@ -1,6 +1,8 @@
 package br.com.cwi.tinderevolution.storage;
 
+import br.com.cwi.tinderevolution.domain.music.Music;
 import br.com.cwi.tinderevolution.domain.sport.Sport;
+import br.com.cwi.tinderevolution.domain.user.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -38,12 +40,12 @@ public class SportStorage {
         return null;
     }
 
-    public boolean delete(int id) {
-        Sport sportToDelete = search(id);
-        if (sportToDelete != null) {
-            return sports.remove(sportToDelete);
-        }
+    public boolean delete(Sport sportToDelete) {
+        sports.remove(sportToDelete);
+        return true;
+    }
 
-        return false;
+    public List<User> getUsers(Sport sport) {
+        return sport.getUsers();
     }
 }

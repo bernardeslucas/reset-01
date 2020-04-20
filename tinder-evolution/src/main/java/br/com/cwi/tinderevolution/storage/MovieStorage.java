@@ -1,6 +1,8 @@
 package br.com.cwi.tinderevolution.storage;
 
 import br.com.cwi.tinderevolution.domain.movie.Movie;
+import br.com.cwi.tinderevolution.domain.user.User;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -41,15 +43,13 @@ public class MovieStorage {
         return null;
     }
 
-    public boolean delete(int id) {
-        Movie movieToDelete = search(id);
-        if (movieToDelete != null) {
-            return movies.remove(movieToDelete);
-        }
-        return false;
-
-
+    public boolean delete(Movie movieToDelete) {
+        movies.remove(movieToDelete);
+        return true;
     }
 
+    public List<User> getUsers(Movie movie) {
+        return movie.getUsers();
+    }
 
 }

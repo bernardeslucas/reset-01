@@ -9,7 +9,6 @@ import java.util.List;
 
 public class CuriosityStorage {
 
-    private static int contadorId = 1;
     private static List<Curiosity> curiosities = new ArrayList<>();
 
     public Curiosity create(Curiosity curiosity) {
@@ -27,7 +26,6 @@ public class CuriosityStorage {
         curiosityToEdit.setDescription(curiosityUpdated.getDescription());
         curiosityToEdit.setCategory(curiosityUpdated.getCategory());
 
-
         return curiosityToEdit;
     }
 
@@ -40,13 +38,12 @@ public class CuriosityStorage {
         return null;
     }
 
-    public boolean delete(int id) {
-        Curiosity curiosityToDelete = search(id);
-        if (curiosityToDelete != null) {
-            return curiosities.remove(curiosityToDelete);
-        }
-
-        return false;
+    public boolean delete(Curiosity curiosityToDelete) {
+        curiosities.remove(curiosityToDelete);
+        return true;
     }
 
+    public List<User> getUsers(Curiosity curiosity) {
+        return curiosity.getUsers();
+    }
 }
