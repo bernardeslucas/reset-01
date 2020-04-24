@@ -1,15 +1,17 @@
 package br.com.cwi.tinderevolution.storage;
 
 import br.com.cwi.tinderevolution.domain.curiosity.Curiosity;
-import br.com.cwi.tinderevolution.domain.user.User;
+import br.com.cwi.tinderevolution.domain.user.UserDTO;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static br.com.cwi.tinderevolution.domain.user.UserDTO.transformList;
+
 public class CuriosityStorage {
 
-    private static List<Curiosity> curiosities = new ArrayList<>();
+    private static final List<Curiosity> curiosities = new ArrayList<>();
 
     public Curiosity create(Curiosity curiosity) {
 
@@ -43,7 +45,7 @@ public class CuriosityStorage {
         return true;
     }
 
-    public List<User> getUsers(Curiosity curiosity) {
-        return curiosity.getUsers();
+    public List<UserDTO> getUsers(Curiosity curiosity) {
+        return transformList(curiosity.getUsers());
     }
 }

@@ -11,7 +11,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class User {
+
 
     private int id;
     private String name;
@@ -19,20 +22,21 @@ public class User {
     private String phone;
     private LocalDate birthDate;
     private String bio;
-    private Double latitude = null, longitude = null;
+    private Double latitude;
+    private Double longitude;
     private String photoUrl;
+    private final List<Music> musicsLiked = new ArrayList<>();
+    private final List<Movie> moviesLiked = new ArrayList<>();
+    private final List<Series> seriesLiked = new ArrayList<>();
+    private final List<Game> gamesLiked = new ArrayList<>();
+    private final List<Sport> sportsLiked = new ArrayList<>();
+    private final List<Curiosity> curiositiesDefined = new ArrayList<>();
+    private final List<User> likes = new ArrayList<>();
+    private final List<User> dislikes = new ArrayList<>();
+    private final List<User> matches = new ArrayList<>();
 
-    private List<Music> musicsLiked = new ArrayList<>();
-    private List<Movie> moviesLiked = new ArrayList<>();
-    private List<Series> seriesLiked = new ArrayList<>();
-    private List<Game> gamesLiked = new ArrayList<>();
-    private List<Sport> sportsLiked = new ArrayList<>();
-    private List<Curiosity> curiositiesDefined = new ArrayList<>();
-
-    private List<User> likes = new ArrayList<>();
-    private List<User> dislikes = new ArrayList<>();
-    private List<User> matches = new ArrayList<>();
-    private User best;
+    public User() {
+    }
 
     public User(int id, String name, String email, String phone, LocalDate birthDate, String bio, Double latitude, Double longitude, String photoUrl) {
         this.id = id;
@@ -238,13 +242,7 @@ public class User {
     }
 
     //best
-    public User best() {
-        return best;
-    }
 
-    public void setBest(User best) {
-        this.best = best;
-    }
 
     @Override
     public String toString() {

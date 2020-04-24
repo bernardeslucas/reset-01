@@ -3,6 +3,7 @@ package br.com.cwi.tinderevolution.controller;
 
 import br.com.cwi.tinderevolution.domain.curiosity.Curiosity;
 import br.com.cwi.tinderevolution.domain.user.User;
+import br.com.cwi.tinderevolution.domain.user.UserDTO;
 import br.com.cwi.tinderevolution.management.CuriosityManagement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +12,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tinder/api/curiosities")
-public class CuriosityController {
+public class CuriositiesController {
 
-    @Autowired
+   @Autowired
     private CuriosityManagement management;
 
     @GetMapping
@@ -27,13 +28,13 @@ public class CuriosityController {
     }
 
     @PostMapping
-    private void create(@RequestBody Curiosity music) {
-        management.create(music);
+    private void create(@RequestBody Curiosity curiosity) {
+        management.create(curiosity);
     }
 
     @PutMapping("{id}")
-    private Curiosity edit(@PathVariable int id, @RequestBody Curiosity music) {
-        return management.edit(id, music);
+    private Curiosity edit(@PathVariable int id, @RequestBody Curiosity curiosity) {
+        return management.edit(id, curiosity);
     }
 
     @DeleteMapping("{id}")
@@ -43,7 +44,8 @@ public class CuriosityController {
 
     //get users by curiosity id
     @GetMapping("{id}/users")
-    public List<User> getUsers(@PathVariable("id") int id){
+    public List<UserDTO> getUsers(@PathVariable("id") int id){
+        //created a UserDTO class to handle the JSON serialization as necessary
         return management.getUsers(id);
     }
 

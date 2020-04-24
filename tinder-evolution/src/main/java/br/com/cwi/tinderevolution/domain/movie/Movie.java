@@ -14,15 +14,15 @@ public class Movie {
     private String director;
     private LocalDate releaseDate;
     private MovieGenres movieGenre;
-    private String storyLine;
-    private List<User> users = new ArrayList<>();
+    private String storyline;
+    private final List<User> users = new ArrayList<>();
 
-    public Movie(String title, String director, LocalDate releaseDate, MovieGenres movieGenre, String storyLine) {
+    public Movie(String title, String director, LocalDate releaseDate, MovieGenres movieGenre, String storyline) {
         this.title = title;
         this.director = director;
         this.releaseDate = releaseDate;
         this.movieGenre = movieGenre;
-        this.storyLine = storyLine;
+        this.storyline = storyline;
     }
 
     public int getId() {
@@ -65,12 +65,12 @@ public class Movie {
         this.movieGenre = movieGenre;
     }
 
-    public String getStoryLine() {
-        return storyLine;
+    public String getStoryline() {
+        return storyline;
     }
 
-    public void setStoryLine(String storyLine) {
-        this.storyLine = storyLine;
+    public void setStoryline(String storyline) {
+        this.storyline = storyline;
     }
 
     @JsonIgnore
@@ -96,6 +96,6 @@ public class Movie {
                 "', Diretor: '" + director +
                 "', Data de lançamento: '" + releaseDate +
                 "', Categoria: '" + movieGenre.getDescription() +
-                "', Sinopse: '" + storyLine + "']";
+                "', Sinopse: '" + storyline + "']";
     }
 }

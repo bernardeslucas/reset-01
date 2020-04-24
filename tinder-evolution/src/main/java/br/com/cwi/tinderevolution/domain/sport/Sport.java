@@ -13,7 +13,7 @@ import java.util.List;
 public class Sport {
     private int id;
     private String name;
-    private List<User> users = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
 
     @JsonCreator
     public Sport(@JsonProperty("name") String name) {

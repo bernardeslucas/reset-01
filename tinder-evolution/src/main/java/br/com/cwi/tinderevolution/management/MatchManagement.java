@@ -10,20 +10,14 @@ import br.com.cwi.tinderevolution.domain.user.User;
 import br.com.cwi.tinderevolution.storage.MatchStorage;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Service
 public class MatchManagement {
-    private MatchStorage matchStorage = new MatchStorage();
-    private UserManagement userManagement = new UserManagement();
+    private final MatchStorage matchStorage = new MatchStorage();
+    private final UserManagement userManagement = new UserManagement();
 
-    public void checkUsers(User user1, User user2) {
-        if (user1 == null || user2 == null) {
-            throw new RuntimeException("Usuário(s) não encontrado(s).");
-        }
-    }
+
 
     public void checkMatch(User user, User userLiked) {
         if (userLiked.likes().contains(user) && !userLiked.matches().contains(user)) {
@@ -42,9 +36,6 @@ public class MatchManagement {
     //likes
     public List<User> usersLiked(int id) {
         User user = userManagement.search(id);
-        if (user == null) {
-            return null;
-        }
         return matchStorage.usersLiked(user);
     }
 
@@ -52,8 +43,10 @@ public class MatchManagement {
         User user = userManagement.search(idUser);
         User userLiked = userManagement.search(idUserLiked);
 
-        //check null
-        checkUsers(user, userLiked);
+        //check if already liked
+        if(user.likes().contains(userLiked)){
+            throw new RuntimeException("Usuário já deu like neste usário.");
+        }
 
         //add like
         matchStorage.addLike(user, userLiked);
@@ -66,8 +59,10 @@ public class MatchManagement {
         User user = userManagement.search(idUser);
         User userNotLiked = userManagement.search(idUserNotLiked);
 
-        //check null
-        checkUsers(user, userNotLiked);
+        //check if liked
+        if(!user.likes().contains(userNotLiked)){
+            throw new RuntimeException("Usuário não havia dado like neste usuário.");
+        }
 
         //delete like
         matchStorage.deleteLike(user, userNotLiked);
@@ -79,9 +74,6 @@ public class MatchManagement {
     //dislikes
     public List<User> usersDisliked(int id) {
         User user = userManagement.search(id);
-        if (user == null) {
-            return null;
-        }
         return matchStorage.usersDisliked(user);
     }
 
@@ -89,8 +81,10 @@ public class MatchManagement {
         User user = userManagement.search(idUser);
         User userDisliked = userManagement.search(idUserDisliked);
 
-        //check user existence
-        checkUsers(user, userDisliked);
+        //check if already disliked
+        if(user.dislikes().contains(userDisliked)){
+            throw new RuntimeException("Usuário já deu dislike neste usário.");
+        }
 
         //add dislike
         matchStorage.addDislike(user, userDisliked);
@@ -104,8 +98,10 @@ public class MatchManagement {
         User user = userManagement.search(idUser);
         User userNotDisliked = userManagement.search(idUserNotDisliked);
 
-        //check null
-        checkUsers(user, userNotDisliked);
+        //check if disliked
+        if(!user.dislikes().contains(userNotDisliked)){
+            throw new RuntimeException("Usuário não havia dado dislike neste usário.");
+        }
 
         //delete dislike
         matchStorage.deleteDislike(user, userNotDisliked);
@@ -114,27 +110,37 @@ public class MatchManagement {
     //matches
     public List<User> matchesList(int id) {
         User user = userManagement.search(id);
-        if (user == null) {
-            throw new RuntimeException("Usuário(s) não encontrado(s).");
-        }
+
         return matchStorage.matchesList(user);
     }
 
-    //best
-    public List<User> best(int id) {
+    //distance between two users
+    public double distanceBetween(User user1, User user2) {
+
+        double lat1 = user1.getLatitude();
+        double long1 = user1.getLongitude();
+        double lat2 = user2.getLatitude();
+        double long2 = user2.getLongitude();
+
+        //math calculation between two geo coordinates - in km
+        return org.apache.lucene.util.SloppyMath.haversinMeters(lat1, long1, lat2, long2) / 1000;
+    }
+
+    //get the nearest best possible match within 10km
+    public User best(int id) {
         User user = userManagement.search(id);
-        List<User> userBest = new ArrayList<>();
-        int counter = 0;
+        User best = null;
+//        List<User> userBest = new ArrayList<>();
+
+        int counter;
         int counterBest = 0;
 
-        for (Iterator<User> i = userManagement.list().iterator(); i.hasNext(); ) {
-            User userIterated = i.next();
-
+        for (User userIterated : userManagement.list()) {
             if (userIterated == user || user.matches().contains(userIterated) || user.dislikes().contains(userIterated) ||
-                    userIterated.dislikes().contains(user)) {
+                    userIterated.dislikes().contains(user) || distanceBetween(user, userIterated) > 10) {
                 continue;
             }
-            //retrieve the listsLiked from the user iterated
+            //retrieve the likedLists from the user iterated
             List<Music> musicsCommon = userIterated.getMusicsLiked();
             List<Series> seriesCommon = userIterated.getSeriesLiked();
             List<Movie> moviesCommon = userIterated.getMoviesLiked();
@@ -142,7 +148,7 @@ public class MatchManagement {
             List<Sport> sportsCommon = userIterated.getSportsLiked();
             List<Curiosity> curiositiesCommon = userIterated.getCuriositiesSet();
 
-            //retain only the common items to use the size list
+            //retain only the common items between user and userIterated to use the size list as a counter of common items
             musicsCommon.retainAll(user.getMusicsLiked());
             seriesCommon.retainAll(user.getSeriesLiked());
             moviesCommon.retainAll(user.getMoviesLiked());
@@ -153,18 +159,29 @@ public class MatchManagement {
             //count items in common
             counter = musicsCommon.size() + seriesCommon.size() + moviesCommon.size() + gamesCommon.size() + sportsCommon.size() + curiositiesCommon.size();
 
-            //checks the best, if there are two identical best
-            if (counter == counterBest) {
-                userBest.add(userIterated);
-            } else if (counter > counterBest) {
+            //checks the best(s) within 10km (not caring about nearest)
+            //-> could return more than one if they have the same number of common items between each other
+            //to test this alternative, the method has to return a List<User>
+//            if (counter == counterBest) {
+//                userBest.add(userIterated);
+//            } else if (counter > counterBest) {
+//                counterBest = counter;
+//                userBest.clear();
+//                userBest.add(userIterated);
+//            }
+
+            // -> confirm that the best has at least 1 item in common and to avoid the distanceBetween(user, null)
+            if (counter == 0) {
+                continue;
+            }
+            //check the current best
+            if (counter > counterBest || counter == counterBest && distanceBetween(user, userIterated) < distanceBetween(user, best)) {
                 counterBest = counter;
-                userBest.clear();
-                userBest.add(userIterated);
+                best = userIterated;
             }
 
         }
-
-        return userBest;
+        return best;
     }
 
 }

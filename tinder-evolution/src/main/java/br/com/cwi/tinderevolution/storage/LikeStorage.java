@@ -9,14 +9,9 @@ import br.com.cwi.tinderevolution.domain.sport.Sport;
 import br.com.cwi.tinderevolution.domain.user.User;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public class LikesStorage {
+public class LikeStorage {
 
-    public List<Music> musicsLiked(User user) {
-        return user.getMusicsLiked();
-    }
     //music
     public void likeMusic(User user, Music music) {
         user.likeMusic(music);
@@ -25,6 +20,7 @@ public class LikesStorage {
     public void dislikeMusic(User user, Music music) {
         user.dislikeMusic(music);
     }
+
     //movie
     public void likeMovie(User user, Movie movie) {
         user.likeMovie(movie);
@@ -69,12 +65,5 @@ public class LikesStorage {
     public void deleteCuriosity(User user, Curiosity curiosity) {
         user.deleteCuriosity(curiosity);
     }
-
-
-
-
-
-
-
 
 }

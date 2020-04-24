@@ -1,12 +1,12 @@
 package br.com.cwi.tinderevolution.domain.movie;
 
 public enum MovieGenres {
+    ACTION("Ação"),
+    COMEDY("Comédia"),
     DRAMA("Drama"),
-    COMEDIA("Comédia"),
-    SUSPENSE("Suspense"),
-    TERROR("Terror"),
-    ACAO("Ação"),
-    MUSICAL("Musical");
+    HORROR("Terror"),
+    MUSICAL("Musical"),
+    SUSPENSE("Suspense");
 
     MovieGenres(String description) {
         this.description = description;

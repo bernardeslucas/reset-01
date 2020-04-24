@@ -7,39 +7,42 @@ import br.com.cwi.tinderevolution.domain.music.Music;
 import br.com.cwi.tinderevolution.domain.series.Series;
 import br.com.cwi.tinderevolution.domain.sport.Sport;
 import br.com.cwi.tinderevolution.domain.user.User;
-import br.com.cwi.tinderevolution.storage.LikesStorage;
+import br.com.cwi.tinderevolution.storage.LikeStorage;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class LikesManagement {
 
-    private LikesStorage likeStorage = new LikesStorage();
-    private UserManagement userManagement = new UserManagement();
-    private MusicManagement musicManagement = new MusicManagement();
-    private MovieManagement movieManagement = new MovieManagement();
-    private SeriesManagement seriesManagement = new SeriesManagement();
-    private GameManagement gameManagement = new GameManagement();
-    private SportManagement sportManagement = new SportManagement();
-    private CuriosityManagement curiosityManagement = new CuriosityManagement();
+    private final LikeStorage likeStorage = new LikeStorage();
+    private final UserManagement userManagement = new UserManagement();
+    private final MusicManagement musicManagement = new MusicManagement();
+    private final MovieManagement movieManagement = new MovieManagement();
+    private final SeriesManagement seriesManagement = new SeriesManagement();
+    private final GameManagement gameManagement = new GameManagement();
+    private final SportManagement sportManagement = new SportManagement();
+    private final CuriosityManagement curiosityManagement = new CuriosityManagement();
+
+    public boolean checkLike(User user, Object object) {
+        if (user.getMusicsLiked().contains(object) ||
+                user.getMoviesLiked().contains(object) ||
+                user.getSeriesLiked().contains(object) ||
+                user.getGamesLiked().contains(object) ||
+                user.getSportsLiked().contains(object) ||
+                user.getCuriositiesSet().contains(object)) {
+            return true;
+        }
+        return false;
+    }
 
     //musics
-    public List<Music> musicsLiked(int id) {
-        User user = userManagement.search(id);
-        if (user == null) {
-            return null;
-        }
-        return likeStorage.musicsLiked(user);
-    }
 
     public void likeMusic(int idUser, int idMusic) {
         User user = userManagement.search(idUser);
         Music music = musicManagement.search(idMusic);
-        if (user == null || music == null) {
-            throw new RuntimeException("Usuário e/ou música não encontrados no sistema.");
-        }
 
+        if (checkLike(user, music)) {
+            throw new RuntimeException("Essa música já foi curtida pelo usuário.");
+        }
         music.addUsers(user);
         likeStorage.likeMusic(user, music);
     }
@@ -47,10 +50,8 @@ public class LikesManagement {
     public void dislikeMusic(int idUser, int idMusic) {
         User user = userManagement.search(idUser);
         Music music = musicManagement.search(idMusic);
-        if (user == null || music == null) {
-            throw new RuntimeException("Usuário e/ou música não encontrados no sistema.");
-        }
-        if (!user.getMusicsLiked().contains(music)) {
+
+        if (!checkLike(user, music)) {
             throw new RuntimeException("Música não curtida pelo usuário.");
         }
         music.deleteUsers(user);
@@ -62,10 +63,10 @@ public class LikesManagement {
     public void likeMovie(int idUser, int idMovie) {
         User user = userManagement.search(idUser);
         Movie movie = movieManagement.search(idMovie);
-        if (user == null || movie == null) {
-            throw new RuntimeException("Usuário e/ou filme não encontrados no sistema.");
-        }
 
+        if (checkLike(user, movie)) {
+            throw new RuntimeException("Esse filme já foi curtido pelo usuário.");
+        }
         movie.addUser(user);
         likeStorage.likeMovie(user, movie);
     }
@@ -73,10 +74,8 @@ public class LikesManagement {
     public void dislikeMovie(int idUser, int idMovie) {
         User user = userManagement.search(idUser);
         Movie movie = movieManagement.search(idMovie);
-        if (user == null || movie == null) {
-            throw new RuntimeException("Usuário e/ou música não encontrados no sistema.");
-        }
-        if (!user.getMoviesLiked().contains(movie)) {
+
+        if (!checkLike(user, movie)) {
             throw new RuntimeException("Filme não curtido pelo usuário.");
         }
         movie.removeUser(user);
@@ -87,10 +86,9 @@ public class LikesManagement {
     public void likeSeries(int idUser, int idSeries) {
         User user = userManagement.search(idUser);
         Series series = seriesManagement.search(idSeries);
-        if (user == null || series == null) {
-            throw new RuntimeException("Usuário e/ou série não encontrados no sistema.");
+        if (checkLike(user, series)) {
+            throw new RuntimeException("Essa série já foi curtida pelo usuário.");
         }
-
         series.addUser(user);
         likeStorage.likeSeries(user, series);
     }
@@ -98,10 +96,8 @@ public class LikesManagement {
     public void dislikeSeries(int idUser, int idSeries) {
         User user = userManagement.search(idUser);
         Series series = seriesManagement.search(idSeries);
-        if (user == null || series == null) {
-            throw new RuntimeException("Usuário e/ou música não encontrados no sistema.");
-        }
-        if (!user.getSeriesLiked().contains(series)) {
+
+        if (!checkLike(user, series)) {
             throw new RuntimeException("Série não curtida pelo usuário.");
         }
 
@@ -113,10 +109,9 @@ public class LikesManagement {
     public void likeGame(int idUser, int idGame) {
         User user = userManagement.search(idUser);
         Game game = gameManagement.search(idGame);
-        if (user == null || game == null) {
-            throw new RuntimeException("Usuário e/ou jogo não encontrados no sistema.");
+        if (checkLike(user, game)) {
+            throw new RuntimeException("Esse jogo já foi curtido pelo usuário.");
         }
-
         game.addUser(user);
         likeStorage.likeGame(user, game);
     }
@@ -124,10 +119,8 @@ public class LikesManagement {
     public void dislikeGame(int idUser, int idGame) {
         User user = userManagement.search(idUser);
         Game game = gameManagement.search(idGame);
-        if (user == null || game == null) {
-            throw new RuntimeException("Usuário e/ou música não encontrados no sistema.");
-        }
-        if (!user.getGamesLiked().contains(game)) {
+
+        if (!checkLike(user, game)) {
             throw new RuntimeException("Jogo não curtido pelo usuário.");
         }
         game.removeUser(user);
@@ -138,8 +131,9 @@ public class LikesManagement {
     public void likeSport(int idUser, int idSport) {
         User user = userManagement.search(idUser);
         Sport sport = sportManagement.search(idSport);
-        if (user == null || sport == null) {
-            throw new RuntimeException("Usuário e/ou esporte não encontrados no sistema.");
+
+        if (checkLike(user, sport)) {
+            throw new RuntimeException("Esse esporte já foi curtido pelo usuário.");
         }
         sport.addUser(user);
         likeStorage.likeSport(user, sport);
@@ -148,10 +142,8 @@ public class LikesManagement {
     public void dislikeSport(int idUser, int idSport) {
         User user = userManagement.search(idUser);
         Sport sport = sportManagement.search(idSport);
-        if (user == null || sport == null) {
-            throw new RuntimeException("Usuário e/ou música não encontrados no sistema.");
-        }
-        if (!user.getSportsLiked().contains(sport)) {
+
+        if (!checkLike(user, sport)) {
             throw new RuntimeException("Esporte não curtido pelo usuário.");
         }
         sport.removeUser(user);
@@ -162,8 +154,9 @@ public class LikesManagement {
     public void likeCuriosity(int idUser, int idCuriosity) {
         User user = userManagement.search(idUser);
         Curiosity curiosity = curiosityManagement.search(idCuriosity);
-        if (user == null || curiosity == null) {
-            throw new RuntimeException("Usuário e/ou curiosidade não encontrados no sistema.");
+
+        if (checkLike(user, curiosity)) {
+            throw new RuntimeException("Essa curiosidade já foi definida pelo usuário.");
         }
         curiosity.addUser(user);
         likeStorage.addCuriosity(user, curiosity);
@@ -172,10 +165,8 @@ public class LikesManagement {
     public void dislikeCuriosity(int idUser, int idCuriosity) {
         User user = userManagement.search(idUser);
         Curiosity curiosity = curiosityManagement.search(idCuriosity);
-        if (user == null || curiosity == null) {
-            throw new RuntimeException("Usuário e/ou música não encontrados no sistema.");
-        }
-        if (!user.getCuriositiesSet().contains(curiosity)) {
+
+        if (!checkLike(user, curiosity)) {
             throw new RuntimeException("Curiosidade não cadastrada nesse usuário.");
         }
         curiosity.removeUser(user);

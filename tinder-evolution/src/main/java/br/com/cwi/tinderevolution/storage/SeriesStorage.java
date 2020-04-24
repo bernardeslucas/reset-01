@@ -1,18 +1,19 @@
 package br.com.cwi.tinderevolution.storage;
 
-import br.com.cwi.tinderevolution.domain.music.Music;
 import br.com.cwi.tinderevolution.domain.series.Series;
-import br.com.cwi.tinderevolution.domain.user.User;
+import br.com.cwi.tinderevolution.domain.user.UserDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static br.com.cwi.tinderevolution.domain.user.UserDTO.transformList;
+
 @Repository
 public class SeriesStorage {
 
-    private static List<Series> seriesList = new ArrayList<>();
+    private static final List<Series> seriesList = new ArrayList<>();
 
     public Series create(Series series) {
 
@@ -32,7 +33,7 @@ public class SeriesStorage {
         seriesToEdit.setSeasonQty(seriesUpdated.getSeasonQty());
         seriesToEdit.setEpisodesQty(seriesUpdated.getEpisodesQty());
         seriesToEdit.setSeriesGenre(seriesUpdated.getSeriesGenre());
-        seriesToEdit.setStoryLine(seriesUpdated.getStoryLine());
+        seriesToEdit.setStoryline(seriesUpdated.getStoryline());
 
         return seriesToEdit;
 
@@ -52,8 +53,8 @@ public class SeriesStorage {
         return true;
     }
 
-    public List<User> getUsers(Series series) {
-        return series.getUsers();
+    public List<UserDTO> getUsers(Series series) {
+        return transformList(series.getUsers());
     }
 
 }

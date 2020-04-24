@@ -1,25 +1,20 @@
 package br.com.cwi.tinderevolution.domain.series;
 
 public enum SeriesGenres {
+    ACTION("Ação"),
     DRAMA("Drama"),
     COMEDY("Comédia"),
-    SUSPENSE("Suspense"),
     HORROR("Terror"),
-    ACTION("Ação"),
-    SITCOM("Sitcom");
+    SITCOM("Sitcom"),
+    SUSPENSE("Suspense");
 
-    private final String description
-            ;
+    private final String description;
 
-    public String getDescription() {
-        return description
-                ;
+    SeriesGenres(String description) {
+        this.description = description;
     }
 
-    SeriesGenres(String description
-    ) {
-        this.description
-                = description
-        ;
+    public String getDescription() {
+        return description;
     }
 }

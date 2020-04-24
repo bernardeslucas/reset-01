@@ -15,7 +15,7 @@ public class Game {
     private LocalDate releaseDate;
     private GameGenres gameGenre;
     private GamePlatforms gamePlatform;
-    private List<User> users = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
 
     public Game(String name, String publisher, LocalDate releaseDate, GameGenres gameGenre, GamePlatforms gamePlatform) {
         this.name = name;

@@ -1,29 +1,25 @@
 package br.com.cwi.tinderevolution.controller;
 
-import br.com.cwi.tinderevolution.domain.music.Music;
-import br.com.cwi.tinderevolution.domain.music.MusicGenres;
-import br.com.cwi.tinderevolution.domain.sport.Sport;
 import br.com.cwi.tinderevolution.domain.user.User;
 import br.com.cwi.tinderevolution.management.MatchManagement;
-import br.com.cwi.tinderevolution.management.MusicManagement;
-import br.com.cwi.tinderevolution.management.SportManagement;
-import br.com.cwi.tinderevolution.management.UserManagement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
 @RequestMapping("/tinder/api/matches")
-public class MatchController {
+public class MatchesController {
 
     @Autowired
     private MatchManagement management;
 
-
-
     //likes
+    @GetMapping("/user/{id}/likes")
+    public List<User> likes (@PathVariable("id") int id){
+        return management.usersLiked(id);
+    }
+
     @PostMapping("/{idUserLiked}/user/{idUser}/like")
     public void addLike(@PathVariable("idUser") int idUser, @PathVariable("idUserLiked") int idUserLiked) {
         management.addLike(idUser, idUserLiked);
@@ -35,6 +31,11 @@ public class MatchController {
     }
 
     //dislikes
+    @GetMapping("/user/{id}/dislikes")
+    public List<User> dislikes (@PathVariable("id") int id){
+        return management.usersDisliked(id);
+    }
+
     @PostMapping("/{idUserDisliked}/user/{idUser}/dislike")
     public void addDislike(@PathVariable("idUser") int idUser, @PathVariable("idUserDisliked") int idUserDisliked) {
         management.addDislike(idUser, idUserDisliked);
@@ -44,27 +45,18 @@ public class MatchController {
     public void deleteDislike(@PathVariable("idUser") int idUser, @PathVariable("idUserDisliked") int idUserDisliked) {
         management.deleteDislike(idUser, idUserDisliked);
     }
+
     //matches
     @GetMapping("/{id}")
     public List<User> matchesList(@PathVariable("id") int id) {
         return management.matchesList(id);
     }
 
+    //get nearest best possible match within 10km
     @GetMapping("/{id}/best")
-    public List<User> best(@PathVariable("id") int id){
-
-
-
-
-
-
-
-
-
-
-
-
+    public User best(@PathVariable("id") int id) {
         return management.best(id);
     }
+
 
 }

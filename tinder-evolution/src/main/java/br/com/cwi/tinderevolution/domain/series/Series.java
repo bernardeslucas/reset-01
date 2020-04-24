@@ -16,17 +16,17 @@ public class Series {
     private int seasonQty;
     private int episodesQty;
     private SeriesGenres seriesGenre;
-    private String storyLine;
-    private List<User> users = new ArrayList<>();
+    private String storyline;
+    private final List<User> users = new ArrayList<>();
 
-    public Series(String name, String director, LocalDate releaseDate, int seasonQty, int episodesQty, SeriesGenres seriesGenre, String storyLine) {
+    public Series(String name, String director, LocalDate releaseDate, int seasonQty, int episodesQty, SeriesGenres seriesGenre, String storyline) {
         this.name = name;
         this.director = director;
         this.releaseDate = releaseDate;
         this.seasonQty = seasonQty;
         this.episodesQty = episodesQty;
         this.seriesGenre = seriesGenre;
-        this.storyLine = storyLine;
+        this.storyline = storyline;
     }
 
     public int getId() {
@@ -85,12 +85,12 @@ public class Series {
         this.seriesGenre = seriesGenre;
     }
 
-    public String getStoryLine() {
-        return storyLine;
+    public String getStoryline() {
+        return storyline;
     }
 
-    public void setStoryLine(String storyLine) {
-        this.storyLine = storyLine;
+    public void setStoryline(String storyline) {
+        this.storyline = storyline;
     }
 
     @JsonIgnore
@@ -116,6 +116,6 @@ public class Series {
                 "',Temporadas: '" + seasonQty +
                 "',Episódios: '" + episodesQty +
                 "', Categoria: '" + seriesGenre.getDescription() +
-                "', Sinopse: '" + storyLine+"']";
+                "', Sinopse: '" + storyline +"']";
     }
 }

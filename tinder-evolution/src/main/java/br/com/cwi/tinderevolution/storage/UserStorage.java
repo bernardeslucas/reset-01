@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public class UserStorage {
 
-    private static List<User> users = new ArrayList<>();
+    private static final List<User> users = new ArrayList<>();
 
     public User create(User user) {
         users.add(user);

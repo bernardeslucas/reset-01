@@ -11,7 +11,7 @@ public class Curiosity {
     private int id;
     private String description;
     private CuriosityCategories category;
-    private List<User> users = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
 
     public Curiosity(String description, CuriosityCategories category) {
         this.description = description;
@@ -57,9 +57,9 @@ public class Curiosity {
 
     @Override
     public String toString() {
-        return "Curiosidade ['"+
-                "id: '"+id+
-                "', Descrição: '"+description+
-                "', Categoria: '"+category+"']";
+        return "Curiosidade ['" +
+                "id: '" + id +
+                "', Descrição: '" + description +
+                "', Categoria: '" + category + "']";
     }
 }

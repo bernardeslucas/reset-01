@@ -1,16 +1,17 @@
 package br.com.cwi.tinderevolution.storage;
 
 import br.com.cwi.tinderevolution.domain.game.Game;
-import br.com.cwi.tinderevolution.domain.music.Music;
-import br.com.cwi.tinderevolution.domain.user.User;
+import br.com.cwi.tinderevolution.domain.user.UserDTO;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static br.com.cwi.tinderevolution.domain.user.UserDTO.transformList;
+
 public class GameStorage {
 
-    private static List<Game> games = new ArrayList<>();
+    private static final List<Game> games = new ArrayList<>();
 
     public Game create(Game game) {
         games.add(game);
@@ -47,9 +48,8 @@ public class GameStorage {
         return true;
     }
 
-    public List<User> getUsers(Game game) {
-        return game.getUsers();
+    public List<UserDTO> getUsers(Game game) {
+        return transformList(game.getUsers());
     }
-
 
 }

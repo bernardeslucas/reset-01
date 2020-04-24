@@ -45,7 +45,7 @@ public class UsersController {
         management.delete(id);
     }
 
-    //get lists
+    //get lists by user id
 
     @GetMapping("{id}/musics")
     public List<Music> musics(@PathVariable("id") int id) {

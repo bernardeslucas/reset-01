@@ -1,18 +1,19 @@
 package br.com.cwi.tinderevolution.storage;
 
-import br.com.cwi.tinderevolution.domain.music.Music;
 import br.com.cwi.tinderevolution.domain.sport.Sport;
-import br.com.cwi.tinderevolution.domain.user.User;
+import br.com.cwi.tinderevolution.domain.user.UserDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static br.com.cwi.tinderevolution.domain.user.UserDTO.transformList;
+
 @Repository
 public class SportStorage {
 
-    private static List<Sport> sports = new ArrayList<>();
+    private static final List<Sport> sports = new ArrayList<>();
 
     public Sport create(Sport sport) {
         sports.add(sport);
@@ -45,7 +46,7 @@ public class SportStorage {
         return true;
     }
 
-    public List<User> getUsers(Sport sport) {
-        return sport.getUsers();
+    public List<UserDTO> getUsers(Sport sport) {
+        return transformList(sport.getUsers());
     }
 }

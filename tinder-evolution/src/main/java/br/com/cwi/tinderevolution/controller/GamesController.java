@@ -1,7 +1,7 @@
 package br.com.cwi.tinderevolution.controller;
 
 import br.com.cwi.tinderevolution.domain.game.Game;
-import br.com.cwi.tinderevolution.domain.user.User;
+import br.com.cwi.tinderevolution.domain.user.UserDTO;
 import br.com.cwi.tinderevolution.management.GameManagement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +42,8 @@ public class GamesController {
 
     //get users by games id
     @GetMapping("{id}/users")
-    public List<User> getUsers(@PathVariable("id") int id){
+    public List<UserDTO> getUsers(@PathVariable("id") int id) {
+        //created a UserDTO class to handle the JSON serialization as necessary
         return management.getUsers(id);
     }
 }

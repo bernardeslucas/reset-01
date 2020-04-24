@@ -17,35 +17,28 @@ import java.util.List;
 @Service
 public class UserManagement {
 
-    private UserStorage storage = new UserStorage();
+    private final UserStorage storage = new UserStorage();
 
-    public boolean checkExistent(User user) {
+    public void checkExistent(User user) {
         // existent rule
-        List<User> userList = storage.list();
-        for (User userExistent : userList) {
-            if (user.getEmail().equals(userExistent.getEmail())) {
-                System.out.println("Este e-mail já está em uso.");
-                return true;
+        for (User usersExistent : list()) {
+            if (user.getEmail().equals(usersExistent.getEmail())) {
+                throw new RuntimeException("E-mail já cadastrado no sistema.");
             }
         }
-        return false;
     }
 
-    public boolean checkError(User user) {
+    public void checkRules(User user) {
         // attribute rules
         if (user.getName().isEmpty() || user.getEmail().isEmpty() ||
                 user.getPhone().isEmpty() || user.getBirthDate() == null ||
                 user.getBio().isEmpty() || user.getLatitude() == null || user.getLongitude() == null) {
-            System.out.println("\nAlguma informação não preenchida.");
-            return true;
+            throw new RuntimeException("Algum atributo não preenchido.");
         }
 
         if (Period.between(user.getBirthDate(), LocalDate.now()).getYears() < 18) {
-            System.out.println("Este aplicativo é somente para maiores de 18 anos.");
-            return true;
+            throw new RuntimeException("Usuário menor de 18 anos.");
         }
-
-        return false;
 
     }
 
@@ -60,18 +53,10 @@ public class UserManagement {
         return storage.list().size() + 1;
     }
 
-    public User checkUser (int id){
-        User user = search(id);
-        if(user == null){
-            throw new RuntimeException("Usuário não encontrado.");
-        }
-        return user;
-    }
-
     public User create(User user) {
-        if (checkExistent(user) || checkError(user)) {
-            return null;
-        }
+        checkExistent(user);
+        checkRules(user);
+
         user.setId(checkId());
         return storage.create(user);
     }
@@ -82,63 +67,65 @@ public class UserManagement {
 
     public User edit(int id, User userUpdated) {
 
-        User userToEdit = checkUser(id);
+        User userToEdit = search(id);
 
         //check existent rule only if the e-mail is different, because otherwise, you wouldn't get to edit other attributes while keeping the same e-mail
         if (!userToEdit.getEmail().equals(userUpdated.getEmail())) {
-            if (checkExistent(userUpdated)) {
-                return null;
-            }
+            checkExistent(userUpdated);
         }
 
         //check attributes error
-        if (checkError(userUpdated)) {
-            return null;
-        }
+        checkRules(userUpdated);
+
         return storage.edit(userToEdit, userUpdated);
     }
 
     public User search(int id) {
+        //first, it checks to a valid input, and then looks into "database"
         if (id > 0) {
-            return storage.search(id);
+            User user = storage.search(id);
+            if (user == null) {
+                throw new RuntimeException("Usuário não encontrado.");
+            }
+            return user;
         }
-        throw new RuntimeException("Id inválido");
+        throw new RuntimeException("Id inválido.");
     }
 
     public boolean delete(int id) {
-        User user = checkUser(id);
+        User user = search(id);
         return storage.delete(user);
     }
 
-    //get lists
+    //get "things" liked by user id
     public List<Music> musicsLiked(int id) {
-        User user = checkUser(id);
+        User user = search(id);
         return storage.musicsLiked(user);
     }
+
     public List<Movie> moviesLiked(int id) {
-        User user = checkUser(id);
+        User user = search(id);
         return storage.moviesLiked(user);
     }
+
     public List<Series> seriesLiked(int id) {
-        User user = checkUser(id);
+        User user = search(id);
         return storage.seriesLiked(user);
     }
+
     public List<Game> gamesLiked(int id) {
-        User user = checkUser(id);
+        User user = search(id);
         return storage.gamesLiked(user);
     }
 
     public List<Sport> sportsLiked(int id) {
-        User user = checkUser(id);
+        User user = search(id);
         return storage.sportsLiked(user);
     }
 
     public List<Curiosity> curiositiesSet(int id) {
-        User user = checkUser(id);
+        User user = search(id);
         return storage.curiositiesSet(user);
     }
-
-
-
 
 }

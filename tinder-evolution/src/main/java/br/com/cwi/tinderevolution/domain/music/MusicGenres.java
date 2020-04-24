@@ -8,14 +8,13 @@ public enum MusicGenres {
     ROCK("Rock"),
     SERTANEJO("Sertanejo");
 
+    private final String description;
 
-    private final String descricao;
-
-    MusicGenres(String descricao) {
-        this.descricao = descricao;
+    MusicGenres(String description) {
+        this.description = description;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescription() {
+        return description;
     }
 }

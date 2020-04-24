@@ -1,12 +1,16 @@
 package br.com.cwi.tinderevolution.storage;
 
 import br.com.cwi.tinderevolution.domain.music.Music;
-import br.com.cwi.tinderevolution.domain.user.User;
+import br.com.cwi.tinderevolution.domain.user.UserDTO;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static br.com.cwi.tinderevolution.domain.user.UserDTO.transformList;
+
+@Repository
 public class MusicStorage {
 
     private static final List<Music> musics = new ArrayList<>();
@@ -46,8 +50,9 @@ public class MusicStorage {
         return true;
     }
 
-    public List<User> getUsers(Music music) {
-        return music.getUsers();
+    public List<UserDTO> getUsers(Music music) {
+
+        return transformList(music.getUsers());
     }
 
 }

@@ -1,20 +1,18 @@
 package br.com.cwi.tinderevolution.domain.curiosity;
 
 public enum CuriosityCategories {
-    ALIMENTACAO("Alimentação"),
-    APARENCIA("Aparência"),
-    COMPORTAMENTO("Comportamento"),
-    EVENTO("Evento");
-
-
+    APPEARANCE("Aparência"),
+    BEHAVIOUR("Comportamento"),
+    EATING("Alimentação"),
+    EVENT("Evento");
 
     private final String description;
 
-    public String getDescription() {
-        return description;
-    }
-
     CuriosityCategories(String description) {
         this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

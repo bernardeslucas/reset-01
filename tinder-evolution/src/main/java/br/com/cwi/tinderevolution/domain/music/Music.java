@@ -15,7 +15,7 @@ public class Music {
     private String artist;
     private LocalDate releaseDate;
     private MusicGenres musicGenre;
-    private List<User> users = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
 
     public Music(int id, String title, String artist, LocalDate releaseDate, MusicGenres musicGenre) {
         this.id = id;
@@ -85,7 +85,7 @@ public class Music {
                 "id: '" + id +
                 "', Título: '" + title +
                 "', Artista: '" + artist +
-                "', Estilo Musical: '" + musicGenre.getDescricao() +
+                "', Estilo Musical: '" + musicGenre.getDescription() +
                 "', Lançamento: '" + releaseDate.format(formatter) + "']";
     }
 }

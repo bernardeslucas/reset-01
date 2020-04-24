@@ -1,42 +1,37 @@
 package br.com.cwi.tinderevolution.management;
 
 import br.com.cwi.tinderevolution.domain.movie.Movie;
-import br.com.cwi.tinderevolution.domain.user.User;
+import br.com.cwi.tinderevolution.domain.user.UserDTO;
 import br.com.cwi.tinderevolution.storage.MovieStorage;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieManagement {
 
-    private MovieStorage storage = new MovieStorage();
+    private final MovieStorage storage = new MovieStorage();
 
-    public boolean checkExistent(Movie movie) {
-        List<Movie> movies = storage.list();
-        for (Movie movieExistent : movies) {
-            if (movie.getTitle().equals(movieExistent.getTitle())) {
-                System.out.println("Filme já cadastrado.");
-                return true;
+    public void checkExistent(Movie movie) {
+
+        for (Movie moviesExistent : list()) {
+            if (movie.getTitle().equals(moviesExistent.getTitle())) {
+                throw new RuntimeException("Filme já cadastrado no sistema.");
             }
         }
-        return false;
     }
 
-    public boolean checkError(Movie movie) {
+    public void checkRules(Movie movie) {
 
-        if (movie.getTitle().isEmpty() || movie.getDirector().isEmpty() || movie.getReleaseDate() == null || movie.getMovieGenre() == null || movie.getStoryLine().isEmpty()) {
-            System.out.println("\nAlguma informação não preenchida.");
-            return true;
+        if (movie.getTitle().isEmpty() || movie.getDirector().isEmpty() || movie.getReleaseDate() == null || movie.getMovieGenre() == null || movie.getStoryline().isEmpty()) {
+            throw new RuntimeException("Algum atributo não preenchido.");
         }
 
         if (movie.getReleaseDate().isAfter(LocalDate.now())) {
-            System.out.println("Data de lançamento futura.");
-            return true;
+            throw new RuntimeException("Data de lançamento futura.");
         }
-
-        return false;
     }
 
     public int checkId() {
@@ -50,19 +45,10 @@ public class MovieManagement {
         return storage.list().size() + 1;
     }
 
-    public Movie checkMovie(int id) {
-        Movie movie = search(id);
-        if (movie == null) {
-            throw new RuntimeException("Filme não encontrado.");
-        }
-        return movie;
-    }
-
     public Movie create(Movie movie) {
 
-        if (checkExistent(movie) || checkError(movie)) {
-            return null;
-        }
+        checkExistent(movie);
+        checkRules(movie);
         movie.setId(checkId());
 
         return storage.create(movie);
@@ -73,36 +59,38 @@ public class MovieManagement {
     }
 
     public Movie edit(int id, Movie movieUpdated) {
-        Movie movieToEdit = checkMovie(id);
+        Movie movieToEdit = search(id);
 
+        //check existent rule only if the title is different, because otherwise, you wouldn't get to edit other attributes while keeping the same title
         if (!movieToEdit.getTitle().equals(movieUpdated.getTitle())) {
-            if (checkExistent(movieUpdated)) {
-                return null;
-            }
+            checkExistent(movieUpdated);
         }
-        if (checkError(movieUpdated)) {
-            return null;
-        }
+        checkRules(movieUpdated);
         return storage.edit(movieToEdit, movieUpdated);
     }
 
     public Movie search(int id) {
+        //first, it checks to a valid input, and then looks into "database"
         if (id > 0) {
-            return storage.search(id);
+            Movie movie = storage.search(id);
+            if (movie == null) {
+                throw new RuntimeException("Filme não encontrado.");
+            }
+            return movie;
         }
-        System.out.println("id inválido");
-        return null;
+        throw new RuntimeException("Id inválido");
     }
 
     public boolean delete(int id) {
-        Movie movieToDelete = checkMovie(id);
+        Movie movieToDelete = search(id);
 
         return storage.delete(movieToDelete);
     }
 
-    public List<User> getUsers(int id) {
-        Movie movie = checkMovie(id);
-        return storage.getUsers(movie);
+    public List<UserDTO> getUsers(int id) {
+        Movie movie = search(id);
+        //limited to 10 registers, following the rule in the project first scope
+        return storage.getUsers(movie).stream().limit(10).collect(Collectors.toList());
     }
 
 }

@@ -7,6 +7,8 @@ public class App {
 
     public static void main(String[] args) {
 
+        //left it excluded, because it no longer work, due to modifications to project v2
+
         CustomScanner scanner = new CustomScanner();
         MusicMenu musicMenu = new MusicMenu();
         UserMenu userMenu = new UserMenu();

@@ -15,7 +15,6 @@ public class MatchStorage {
 
     public void addLike(User user, User userLiked) {
         user.addLike(userLiked);
-        System.out.println("likeou");
     }
 
     public void deleteLike(User user, User userNotLiked) {
@@ -26,6 +25,7 @@ public class MatchStorage {
     public List<User> usersDisliked(User user) {
         return user.dislikes();
     }
+
     public void addDislike(User user, User userDisliked) {
         user.addDislike(userDisliked);
     }
@@ -36,9 +36,7 @@ public class MatchStorage {
 
     //matches
     public List<User> matchesList (User user){
-        System.out.println("lista");
         return user.matches();
-
     }
 
     public void addMatchBetween(User user1, User user2) {
@@ -49,11 +47,6 @@ public class MatchStorage {
     public void deleteMatchBetween(User user1, User user2){
         user1.deleteMatch(user2);
         user2.deleteMatch(user1);
-    }
-
-    //best
-    public User best(User user) {
-        return user.best();
     }
 
 }

@@ -1,16 +1,19 @@
 package br.com.cwi.tinderevolution.storage;
 
 import br.com.cwi.tinderevolution.domain.movie.Movie;
-import br.com.cwi.tinderevolution.domain.user.User;
+import br.com.cwi.tinderevolution.domain.user.UserDTO;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static br.com.cwi.tinderevolution.domain.user.UserDTO.transformList;
+
+@Repository
 public class MovieStorage {
 
     private static final List<Movie> movies = new ArrayList<>();
-    private static int contadorId = 1;
 
     public Movie create(Movie movie) {
 
@@ -25,7 +28,7 @@ public class MovieStorage {
         movieToEdit.setTitle(movieUpdated.getTitle());
         movieToEdit.setReleaseDate(movieUpdated.getReleaseDate());
         movieToEdit.setMovieGenre(movieUpdated.getMovieGenre());
-        movieToEdit.setStoryLine(movieUpdated.getStoryLine());
+        movieToEdit.setStoryline(movieUpdated.getStoryline());
 
         return movieToEdit;
     }
@@ -48,8 +51,8 @@ public class MovieStorage {
         return true;
     }
 
-    public List<User> getUsers(Movie movie) {
-        return movie.getUsers();
+    public List<UserDTO> getUsers(Movie movie) {
+        return transformList(movie.getUsers());
     }
 
 }

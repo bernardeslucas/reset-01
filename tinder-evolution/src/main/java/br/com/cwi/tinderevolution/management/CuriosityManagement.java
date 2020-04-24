@@ -1,37 +1,31 @@
 package br.com.cwi.tinderevolution.management;
 
 import br.com.cwi.tinderevolution.domain.curiosity.Curiosity;
-import br.com.cwi.tinderevolution.domain.music.Music;
-import br.com.cwi.tinderevolution.domain.user.User;
+import br.com.cwi.tinderevolution.domain.user.UserDTO;
 import br.com.cwi.tinderevolution.storage.CuriosityStorage;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CuriosityManagement {
 
-    private CuriosityStorage storage = new CuriosityStorage();
+    private final CuriosityStorage storage = new CuriosityStorage();
 
-    public boolean checkExistent (Curiosity curiosity){
-        List<Curiosity> curiosities = storage.list();
-        for (Curiosity curiosityExistent : curiosities) {
-            if (curiosity.getDescription().equals(curiosityExistent.getDescription())) {
-                System.out.println("Descrição já cadastrada em outra curiosidade");
-                return true;
-            }
-        }
-        return false;
-    }
+//    older rule(v1)
+//    public void checkExistent(Curiosity curiosity) {
+//        for (Curiosity curiositiesExistent : list()) {
+//            if (curiosity.getDescription().equals(curiositiesExistent.getDescription())) {
+//                throw new RuntimeException("Curiosidade já cadastrada no sistema.");
+//            }
+//        }
+//    }
 
-    public boolean checkError(Curiosity curiosity) {
+    public void checkRules(Curiosity curiosity) {
         if (curiosity.getDescription().isEmpty() || curiosity.getCategory() == null) {
-            System.out.println("\nAlguma informação não preenchida.");
-
-            return true;
+            throw new RuntimeException("Algum atributo não preenchido.");
         }
-
-        return false;
     }
 
     public int checkId() {
@@ -45,19 +39,10 @@ public class CuriosityManagement {
         return storage.list().size() + 1;
     }
 
-    public Curiosity checkCuriosity(int id){
-        Curiosity curiosity = search(id);
-        if (curiosity == null) {
-            throw new RuntimeException("Música não encontrada.");
-        }
-        return curiosity;
-    }
-
     public Curiosity create(Curiosity curiosity) {
 
-        if (checkExistent(curiosity) || checkError(curiosity)) {
-            return null;
-        }
+        //checkExistent(curiosity);
+        checkRules(curiosity);
 
         curiosity.setId(checkId());
 
@@ -69,37 +54,39 @@ public class CuriosityManagement {
     }
 
     public Curiosity edit(int id, Curiosity curiosityUpdated) {
-        Curiosity curiosityToEdit = checkCuriosity(id);
 
-        //check existent rule only if the e-mail is different, because otherwise, you wouldn't get to edit other attributes and keep the same e-mail
-        if(!curiosityToEdit.getDescription().equals(curiosityUpdated.getDescription())) {
-            if(checkExistent(curiosityUpdated)){
-                return null;
-            }
-        }
+        Curiosity curiosityToEdit = search(id);
 
-        //check attributes error
-        if (checkError(curiosityUpdated)) {
-            return null;
-        }
+//        older rule v1 (to change the category while keeping the same description)
+//        if (!curiosityToEdit.getDescription().equals(curiosityUpdated.getDescription())){
+//            checkExistent(curiosityUpdated);
+//        }
+
+        checkRules(curiosityUpdated);
+
         return storage.edit(curiosityToEdit, curiosityUpdated);
     }
 
     public Curiosity search(int id) {
         if (id > 0) {
-            return storage.search(id);
+            Curiosity curiosity = storage.search(id);
+            if (curiosity == null) {
+                throw new RuntimeException("Curiosidade não encontrada.");
+            }
+            return curiosity;
         }
-        System.out.println("id inválido");
-        return null;
+        throw new RuntimeException("Id inválido");
     }
 
     public boolean delete(int id) {
-        Curiosity curiosityToDelete = checkCuriosity(id);
+        Curiosity curiosityToDelete = search(id);
         return storage.delete(curiosityToDelete);
     }
 
-    public List<User> getUsers(int id) {
-        Curiosity curiosity = checkCuriosity(id);
-        return storage.getUsers(curiosity);
+    public List<UserDTO> getUsers(int id) {
+        Curiosity curiosity = search(id);
+
+        //limited to 10 registers, following the rule in the project first scope
+        return storage.getUsers(curiosity).stream().limit(10).collect(Collectors.toList());
     }
 }

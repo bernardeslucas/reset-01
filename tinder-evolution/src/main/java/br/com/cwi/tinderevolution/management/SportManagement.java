@@ -1,39 +1,32 @@
 package br.com.cwi.tinderevolution.management;
 
-import br.com.cwi.tinderevolution.domain.music.Music;
 import br.com.cwi.tinderevolution.domain.sport.Sport;
-import br.com.cwi.tinderevolution.domain.user.User;
+import br.com.cwi.tinderevolution.domain.user.UserDTO;
 import br.com.cwi.tinderevolution.storage.SportStorage;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SportManagement {
 
-    private SportStorage storage = new SportStorage();
+    private final SportStorage storage = new SportStorage();
 
-    public boolean checkExistent(Sport sport) {
-        List<Sport> sports = storage.list();
-        for (Sport sportExistent : sports) {
-            if (sport.getName().equals(sportExistent.getName())) {
-                System.out.println("Jogo já cadastrado");
-                return true;
+    public void checkExistent(Sport sport) {
+
+        for (Sport sportsExistent : list()) {
+            if (sport.getName().equals(sportsExistent.getName())) {
+                throw new RuntimeException("Jogo já cadastrado no sistema.");
             }
         }
-        return false;
     }
 
-    public boolean checkError(Sport sport) {
+    public void checkRules(Sport sport) {
 
         if (sport.getName().isEmpty()) {
-            System.out.println("\nAlguma informação não preenchida.");
-            return true;
+            throw new RuntimeException("Algum atributo não preenchido.");
         }
-
-        return false;
-
-
     }
 
     public int checkId() {
@@ -47,19 +40,9 @@ public class SportManagement {
         return storage.list().size() + 1;
     }
 
-    public Sport checkSport(int id){
-        Sport sport = search(id);
-        if (sport == null) {
-            throw new RuntimeException("Esporte não encontrado.");
-        }
-        return sport;
-    }
-
     public Sport create(Sport sport) {
-
-        if (checkExistent(sport) || checkError(sport)) {
-            return null;
-        }
+        checkExistent(sport);
+        checkRules(sport);
         sport.setId(checkId());
 
         return storage.create(sport);
@@ -71,36 +54,33 @@ public class SportManagement {
 
     public Sport edit(int id, Sport sportUpdated) {
         Sport sportToEdit = search(id);
-        if (sportToEdit == null) {
-            System.out.println("Jogo não encontrado");
-            return null;
-        }
-        if (!sportToEdit.getName().equals(sportUpdated.getName())) {
-            if (checkExistent(sportUpdated)) {
-                return null;
-            }
-        }
-        if (checkError(sportUpdated)) {
-            return null;
-        }
+
+        checkExistent(sportUpdated);
+        checkRules(sportUpdated);
+
         return storage.edit(sportToEdit, sportUpdated);
     }
 
     public Sport search(int id) {
+        //first, it checks to a valid input, and then looks into "database"
         if (id > 0) {
-            return storage.search(id);
+            Sport sport = storage.search(id);
+            if (sport == null) {
+                throw new RuntimeException("Esporte não encontrado.");
+            }
+            return sport;
         }
-        System.out.println("id inválido");
-        return null;
+        throw new RuntimeException("Id inválido");
     }
 
     public boolean delete(int id) {
-        Sport sportToDelete = checkSport(id);
+        Sport sportToDelete = search(id);
         return storage.delete(sportToDelete);
     }
 
-    public List<User> getUsers(int id) {
-       Sport sport = checkSport(id);
-        return storage.getUsers(sport);
+    public List<UserDTO> getUsers(int id) {
+        Sport sport = search(id);
+        //limited to 10 registers, following the rule in the project first scope
+        return storage.getUsers(sport).stream().limit(10).collect(Collectors.toList());
     }
 }
